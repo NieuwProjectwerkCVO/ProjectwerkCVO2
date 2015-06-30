@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CVOApp.Models
 {
-    public static class Login
+    public static class LoginClass
     {
         public static int LoginSession
         {
