@@ -1,0 +1,32 @@
+﻿@using System.Web.Razor
+@{
+    if (IsPost)
+    {
+        CVOApp.Services.Login(Request["cursistNummer"], Request["wachtwoord"]);
+    }
+    if (CVOApp.Models.LoginClass.LoginSession != 0)
+    {
+        Response.Redirect("home.cshtml");
+    }
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form action="" method="post">
+            <div>
+                <label for="cursistNummer">cursistnummer</label>
+                <input type="text" maxlength="5" name="cursistNummer" id="cursistNummer" />
+            </div>
+            <div>
+                <label for="wachtwoord">wachtwoord</label>
+                <input type="password" maxlength="5" name="wachtwoord" id="wachtwoord" />
+            </div>
+            <div>
+                <button name="login" id="login" type="submit">Login</button>
+            </div>
+        </form>
+    </body>
+</html>
