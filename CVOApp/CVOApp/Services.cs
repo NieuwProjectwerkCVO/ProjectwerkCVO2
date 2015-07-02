@@ -24,29 +24,21 @@ namespace CVOApp
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
-                            if (query.HasRows)
+                            while (query.Read())
                             {
-                                while (query.Read())
+                                if (query["Wachtwoord"].ToString() == wachtwoord)
                                 {
-                                    if (query["Wachtwoord"] == wachtwoord)
-                                    {
-                                        idCursist = Convert.ToInt32(query["Id"]);
-                                    }
+                                    CVOApp.Models.LoginClass.LoginSession = Convert.ToInt32(query["Id"]);
                                 }
                             }
                         }
                     }
                 }
-                
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-
-            if (idCursist != 0)
-            {
-                CVOApp.Models.LoginClass.LoginSession = idCursist;
             }
 
         }
