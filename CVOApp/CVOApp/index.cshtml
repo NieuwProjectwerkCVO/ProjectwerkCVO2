@@ -1,13 +1,26 @@
 ﻿@using System.Web.Razor
 @{
+    string message = "";
     if (IsPost)
     {
         CVOApp.Services.Login(Request["cursistNummer"], Request["wachtwoord"]);
+        if (CVOApp.Models.LoginClass.LoginSession != 0)
+        {
+            Response.Redirect("home.cshtml");
+        }
+        else
+        {
+            message = "ongeldige cursistnummer of wachtwoord. probeer nog een keer";
+        }
     }
-    if (CVOApp.Models.LoginClass.LoginSession != 0)
+    else
     {
-        Response.Redirect("home.cshtml");
+        if (CVOApp.Models.LoginClass.LoginSession != 0)
+        {
+            Response.Redirect("home.cshtml");
+        }
     }
+    
 }
 <!DOCTYPE html>
 <html>
@@ -15,6 +28,7 @@
         <title></title>
     </head>
     <body>
+        <p>@message</p>
         <form action="" method="post">
             <div>
                 <label for="cursistNummer">cursistnummer</label>
