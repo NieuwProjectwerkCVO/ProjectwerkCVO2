@@ -1,6 +1,6 @@
 ﻿@using System.Web.Razor
 @{
-    int cursistId = CVOApp.Models.LoginClass.LoginSession;    
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
     if (cursistId == 0)
     {
         Response.Redirect("index.cshtml");
@@ -9,10 +9,37 @@
 }
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-
-    </body>
+<head>
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>cursusnummer</th>
+            <th>modulenaam</th>
+            <th>punten</th>
+        </tr>
+        @{
+            foreach (var r in lijst)
+            {
+                if (r.Geslaagd)
+                {
+                    <tr>
+                        <td>@r.CursusNummer</td>
+                        <td>@r.ModuleNaam</td>
+                        <td>@r.Totaal &#47; 100</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td style="color: red;">@r.CursusNummer</td>
+                        <td style="color: red;">@r.ModuleNaam</td>
+                        <td style="color: red;">@r.Totaal &#47; 100</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+</body>
 </html>
