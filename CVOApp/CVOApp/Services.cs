@@ -11,7 +11,6 @@ namespace CVOApp
     {
         public static void Login(string cursistNummer, string wachtwoord)
         {
-            int idCursist = 0;
             try
             {
                 using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
@@ -41,6 +40,41 @@ namespace CVOApp
                 Console.WriteLine(e.Message);
             }
 
+        }
+
+        public static List<Resultaat> ResultatenByCursistId(int cursistId)
+        {
+            List<Resultaat> lijst = new List<Resultaat>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using (SqlCommand com = new SqlCommand("grp1_SelectCursistResultaat", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add("@idCursist", System.Data.SqlDbType.Int).Value = cursistId;
+                        con.Open();
+                        using (SqlDataReader query = com.ExecuteReader())
+                        {
+                            while (query.Read())
+                            {
+                                Resultaat r = new Resultaat();
+                                r.CursusNummer = query["CursusNummer"].ToString();
+                                r.ModuleNaam = query["Naam"].ToString();
+                                r.Totaal = Convert.ToDouble(query["PuntenTotaal"]);
+                                lijst.Add(r);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return lijst;
         }
     }
 }

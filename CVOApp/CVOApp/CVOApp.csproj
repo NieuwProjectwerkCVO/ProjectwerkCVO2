@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Resultaat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs" />
   </ItemGroup>
@@ -92,6 +93,7 @@
     <Content Include="index.cshtml" />
     <Content Include="packages.config" />
     <Content Include="home.cshtml" />
+    <Content Include="resultaten.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

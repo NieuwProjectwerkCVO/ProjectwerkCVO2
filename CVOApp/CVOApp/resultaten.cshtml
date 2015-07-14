@@ -1,0 +1,18 @@
+﻿@using System.Web.Razor
+@{
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;    
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
+    List<CVOApp.Models.Resultaat> lijst = CVOApp.Services.ResultatenByCursistId(cursistId);
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+    </body>
+</html>
