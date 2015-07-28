@@ -76,5 +76,42 @@ namespace CVOApp
 
             return lijst;
         }
+
+
+            public static List<Module> SelectCursussen()
+        {
+            List<Module> lijst = new List<Module>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using (SqlCommand com = new SqlCommand("grp1_SelectCursussen", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        
+                        con.Open();
+                        using (SqlDataReader query = com.ExecuteReader())
+                        {
+                            while (query.Read())
+                            {
+                                Module m = new Module();
+                                m.Naam = query["Naam"].ToString();
+                                m.CursusNummer = query["CursusNummer"].ToString();
+                                m.AantalPlaatsen = Convert.ToInt32(query["MaximumCapaciteit"]);
+                                m.BeschikbarePlaatsen = Convert.ToInt32(query["PlaatsenVoorDerden"]);
+                                lijst.Add(m);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return lijst;
+        }
     }
 }

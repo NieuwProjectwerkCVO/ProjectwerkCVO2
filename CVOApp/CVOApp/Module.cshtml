@@ -1,0 +1,39 @@
+﻿@using System.Web.Razor
+@{
+    //int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    //if (cursistId == 0)
+    //{
+    //    Response.Redirect("index.cshtml");
+    //}
+    List<CVOApp.Models.Module> lijst = CVOApp.Services.SelectCursussen();
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cursussen</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>cursusnummer</th>
+            <th>modulenaam</th>
+            <th>plaatsen</th>
+        </tr>
+        @{
+            foreach (var m in lijst)
+            {
+               
+                {
+                    <tr>
+                        <td>@m.CursusNummer</td>
+                        <td>@m.Naam</td>
+                        <td>@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>
+                    </tr>
+                }
+                
+            }
+        }
+    </table>
+</body>
+</html>
