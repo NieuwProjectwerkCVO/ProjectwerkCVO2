@@ -113,5 +113,11 @@ namespace CVOApp
 
             return lijst;
         }
+
+            public static List<Lesmoment> SelectLessen()
+            {
+
+                List<Lesmoment> lijst = new List<Lesmoment>();
+            }
     }
 }
