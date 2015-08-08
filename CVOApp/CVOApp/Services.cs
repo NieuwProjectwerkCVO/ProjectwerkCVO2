@@ -78,7 +78,7 @@ namespace CVOApp
         }
 
 
-            public static List<Module> SelectCursussen()
+        public static List<Module> SelectCursussen()
         {
             List<Module> lijst = new List<Module>();
 
@@ -114,10 +114,10 @@ namespace CVOApp
             return lijst;
         }
 
-            public static List<Lesmoment> SelectLessen()
-            {
+        public static List<Lesmoment> SelectLessen()
+        {
 
-                List<Lesmoment> lijst = new List<Lesmoment>();
-            }
+            List<Lesmoment> lijst = new List<Lesmoment>();
+        }
     }
 }
