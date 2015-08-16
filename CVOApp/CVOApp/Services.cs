@@ -99,7 +99,7 @@ namespace CVOApp
                                 m.Naam = query["Naam"].ToString();
                                 m.CursusNummer = query["CursusNummer"].ToString();
                                 m.AantalPlaatsen = Convert.ToInt32(query["MaximumCapaciteit"]);
-                                m.BeschikbarePlaatsen = Convert.ToInt32(query["PlaatsenVoorDerden"]);
+                                m.BeschikbarePlaatsen = Convert.ToInt32(query["AantalPlaatsenBeschikbaar"]);
                                 lijst.Add(m);
                             }
                         }
@@ -114,10 +114,10 @@ namespace CVOApp
             return lijst;
         }
 
-        public static List<Lesmoment> SelectLessen()
-        {
+        //public static List<Lesmoment> SelectLessen()
+        //{
 
-            List<Lesmoment> lijst = new List<Lesmoment>();
-        }
+        //    List<Lesmoment> lijst = new List<Lesmoment>();
+        //}
     }
 }
