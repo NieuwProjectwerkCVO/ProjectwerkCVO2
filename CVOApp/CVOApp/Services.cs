@@ -1,9 +1,7 @@
-﻿using System;
+﻿using CVOApp.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.SqlClient;
-using CVOApp.Models;
 
 namespace CVOApp
 {
@@ -89,7 +87,7 @@ namespace CVOApp
                     using (SqlCommand com = new SqlCommand("grp1_SelectCursussen", con))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
-                        
+
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
@@ -114,18 +112,44 @@ namespace CVOApp
             return lijst;
         }
 
-<<<<<<< HEAD
-            public static List<Lesrooster> SelectLessenByCursist(int cursistId)
+        public static List<Lesrooster> SelectLessenByCursist()
+        {
+            List<Lesrooster> lijst = new List<Lesrooster>();
+
+            try
             {
+                using(SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using(SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer"))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
 
-                List<Lesrooster> lijst = new List<Lesrooster>();
+                        con.Open();
+                        using (SqlDataReader query = com.ExecuteReader())
+                        {
+                            while(query.Read())
+                            {
+                                Lesrooster l = new Lesrooster();
+                                l.CursusNummer = query["Cursusnummer"].ToString();
+                                l.LesDatum = Convert.ToDateTime(query["Datum"]);
+                                l.Campus = query["Campus"].ToString();
+                                l.Docent = query["Docent"].ToString();
+                                l.Lokaal = query["Lokaal"].ToString();
+                                l.ModuleNaam = query["Modulenaam"].ToString();
+                                l.StartTijd = Convert.ToDateTime(query["Starttijd"]);
+                                l.EindTijd = Convert.ToDateTime(query["Eindtijd"]);
+                            }
+                        }
+                    }
+                }
             }
-=======
-        //public static List<Lesmoment> SelectLessen()
-        //{
+            catch (Exception e)
+               {
+                    Console.WriteLine(e.Message);
+               }
+          return lijst;
+        }
 
-        //    List<Lesmoment> lijst = new List<Lesmoment>();
-        //}
->>>>>>> origin/master
+        
     }
 }

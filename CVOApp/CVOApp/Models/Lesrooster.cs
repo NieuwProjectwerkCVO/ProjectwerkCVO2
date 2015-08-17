@@ -9,9 +9,12 @@ namespace CVOApp.Models
     {
         private string _cursusNummer;
         private string _moduleNaam;
-        private bool _ingeschreven;
         private DateTime _lesDatum;
         private string _lokaal;
+        private DateTime _startTijd;
+        private DateTime _eindTijd;
+        private string _campus;
+        private string _docent;
 
         public string CursusNummer
         {
@@ -27,14 +30,8 @@ namespace CVOApp.Models
 
         public string Lokaal
         {
-            get { return _lokaal}
+            get { return _lokaal; }
             set { _lokaal = value;}
-        }
-
-        public bool Ingeschreven
-        {
-            get { return _ingeschreven; }
-            set { _ingeschreven = value; }
         }
 
         public DateTime LesDatum
@@ -43,17 +40,40 @@ namespace CVOApp.Models
             set { _lesDatum = value; }
         }
 
+        public DateTime StartTijd
+        {
+            get { return _startTijd; }
+            set { _startTijd = value; }
+        }
+
+        public DateTime EindTijd
+        {
+            get { return _eindTijd; }
+            set { _eindTijd = value; }
+        }
+
+        public string Campus
+        {
+            get { return _campus; }
+            set { _campus = value; }
+        }
+
+        public string Docent
+        {
+            get { return _docent; }
+            set { _docent = value; }
+        }
+
 
         public Lesrooster()
         {
 
         }
 
-        public Lesrooster(string moduleNaam, string cursusNummer, bool ingeschreven, DateTime lesDatum)
+        public Lesrooster(string moduleNaam, string cursusNummer, DateTime lesDatum)
         {
             ModuleNaam = moduleNaam;
             CursusNummer = cursusNummer;
-            Ingeschreven = ingeschreven;
             LesDatum = lesDatum;
         }
     }
