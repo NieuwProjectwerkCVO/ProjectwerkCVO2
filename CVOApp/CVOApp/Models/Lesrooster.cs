@@ -5,12 +5,13 @@ using System.Web;
 
 namespace CVOApp.Models
 {
-    public class Lesmoment
+    public class Lesrooster
     {
         private string _cursusNummer;
         private string _moduleNaam;
         private bool _ingeschreven;
-        private DateTime _lestijd;
+        private DateTime _lesDatum;
+        private string _lokaal;
 
         public string CursusNummer
         {
@@ -21,7 +22,13 @@ namespace CVOApp.Models
         public string ModuleNaam
         {
             get { return _moduleNaam; }
-            set { _moduleNaam= value; }
+            set { _moduleNaam = value; }
+        }
+
+        public string Lokaal
+        {
+            get { return _lokaal}
+            set { _lokaal = value;}
         }
 
         public bool Ingeschreven
@@ -30,24 +37,24 @@ namespace CVOApp.Models
             set { _ingeschreven = value; }
         }
 
-        public DateTime Lestijd
+        public DateTime LesDatum
         {
-            get { return _lestijd; }
-            set { _lestijd = value; }
+            get { return _lesDatum; }
+            set { _lesDatum = value; }
         }
 
 
-        public Lesmoment()
+        public Lesrooster()
         {
 
         }
 
-        public Lesmoment(string moduleNaam, string cursusNummer, bool ingeschreven, DateTime lestijd)
+        public Lesrooster(string moduleNaam, string cursusNummer, bool ingeschreven, DateTime lesDatum)
         {
             ModuleNaam = moduleNaam;
             CursusNummer = cursusNummer;
             Ingeschreven = ingeschreven;
-            Lestijd = lestijd;
+            LesDatum = lesDatum;
         }
     }
 }

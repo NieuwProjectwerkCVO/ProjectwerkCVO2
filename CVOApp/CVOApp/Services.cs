@@ -114,10 +114,10 @@ namespace CVOApp
             return lijst;
         }
 
-            public static List<Lesmoment> SelectLessen()
+            public static List<Lesrooster> SelectLessenByCursist(int cursistId)
             {
 
-                List<Lesmoment> lijst = new List<Lesmoment>();
+                List<Lesrooster> lijst = new List<Lesrooster>();
             }
     }
 }
