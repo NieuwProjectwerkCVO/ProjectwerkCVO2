@@ -10,36 +10,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="Menu.css" />
+    <title>Resultaten</title>
+    <style>
+        .back {
+            background-color: #0076C8;
+            width: 60%;
+            margin: 0 auto;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .left {
+            border-radius: 20px 0 0 20px;
+            border-style: none;
+            padding: 5px;
+            background-color: white;
+            color: #0076C8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .middle {
+            border-style: none;
+            padding: 5px;
+            padding-left: 10px;
+            background-color: white;
+            color: #0076C8;
+            margin-bottom: 5px;
+        }
+
+        .right {
+            border-radius: 0 20px 20px 0;
+            border-style: none;
+            padding: 5px;
+            background-color: white;
+            color: #0076C8;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        th {
+            padding-bottom: 10px;
+            font-size: larger;
+        }
+
+        td {
+            font-size: medium;
+        }
+
+        .tabel {
+            border-spacing: 0 5px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>cursusnummer</th>
-            <th>modulenaam</th>
-            <th>punten</th>
-        </tr>
-        @{
-            foreach (var r in lijst)
-            {
-                if (r.Geslaagd)
+    <div id="Menu" style="width: 100%;">
+        <a href="Index.html"><img src="img/logocvoantwerpenLink.png" style="float:left; width: 20.5%;" /></a>
+        <img src="img/logocvoantwerpen.png" style="float: left; width: 59%;" />
+        <label onclick class="lbl" for="toggle"><img src="img/MenuIcon.png" style="width: 20.5%;" /></label>
+        <input name="" class="toggle" value="" id="toggle" type="checkbox" />
+        <ul class="test">
+            <li class="menu"><a href="home.cshtml">Home</a></li>
+            <li class="menu"><a class="current" href="resultaten.cshtml">Resultaten</a></li>
+            <li class="menu"><a href="Module.cshtml">Modules</a></li>
+            <li class="menuEnd"><a href="index.cshtml">Uitloggen</a></li>
+        </ul>
+    </div>
+    <br /><br />
+    <div class="back">
+        <table class="tabel">
+            <tr>
+                <th>cursusnummer</th>
+                <th>modulenaam</th>
+                <th>punten</th>
+            </tr>
+            @{
+                foreach (var r in lijst)
                 {
-                    <tr>
-                        <td>@r.CursusNummer</td>
-                        <td>@r.ModuleNaam</td>
-                        <td>@r.Totaal &#47; 100</td>
-                    </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td style="color: red;">@r.CursusNummer</td>
-                        <td style="color: red;">@r.ModuleNaam</td>
-                        <td style="color: red;">@r.Totaal &#47; 100</td>
-                    </tr>
+                    if (r.Geslaagd)
+                    {
+                        <tr>
+                            <td class="left">@r.CursusNummer</td>
+                            <td class="middle">@r.ModuleNaam</td>
+                            <td class="right">@r.Totaal &#47; 100</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="row">
+                            <td class="left" style="color: red;">@r.CursusNummer</td>
+                            <td class="middle" style="color: red;">@r.ModuleNaam</td>
+                            <td class="right" style="color: red;">@r.Totaal &#47; 100</td>
+                        </tr>
+                    }
                 }
             }
-        }
-    </table>
+        </table>
+    </div>
 </body>
 </html>

@@ -26,21 +26,82 @@
 <html>
     <head>
         <title></title>
+        <style>
+            .form {
+                background-color: #0076C8;
+                width: 45%;
+                margin: 0 auto;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border-radius: 15px;
+                color: white;
+            }
+
+            .text {
+                width: 90%;
+                border-radius: 20px;
+                text-align: center;
+                border-style: none;
+                padding: 5px 0;
+                background-color: white;
+            }
+
+            .button {
+                width: 40%;
+                border-style: outset;
+                border-width: thick;
+                border-color: white;
+                background-color: white;
+                border-radius: 20px;
+                color: #0076C8;
+                font-size: 1em;
+                font-family: 'Arial Rounded MT';
+                cursor: pointer;
+            }
+
+                .button:active {
+                    color: #4D9FD8;
+                    -webkit-transform: translateY(1px);
+                    transform: translateY(1px);
+                    -webkit-animation: none;
+                    animation: none;
+                }
+
+            td {
+                padding-bottom: 10px;
+            }
+
+            .lbl {
+                margin: 0;
+                font-size: 1.1em;
+                letter-spacing: .8px;
+                font-weight: normal;
+                font-family: 'Arial Rounded MT';
+            }
+        </style>
+
     </head>
     <body>
-        <p>@message</p>
-        <form action="" method="post">
-            <div>
-                <label for="cursistNummer">cursistnummer</label>
-                <input type="text" maxlength="5" name="cursistNummer" id="cursistNummer" value="45648"/>
+        <div style="width:100%; text-align: center; align-content: center;">
+            <p>@message</p>
+            <h1 style="color:#0076C8;">Welkom student!<br />Gelieve in te loggen</h1>
+            <div class="form">
+                <form action="" method="post">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:30%; text-align: right; padding-right: 10px;"><label class="lbl" for="cursistNummer">Cursistnummer:</label></td>
+                            <td style="text-align:left;"><input class="text" type="text" maxlength="5" name="cursistNummer" id="cursistNummer" value="45648" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; padding-right: 10px;"><label class="lbl" for="wachtwoord">Wachtwoord:</label></td>
+                            <td style="text-align:left;"><input class="text" type="password" name="wachtwoord" id="wachtwoord" value="password" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding-bottom:0px; padding-top:10px;"><button class="button" name="login" id="login" type="submit">Login</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
-            <div>
-                <label for="wachtwoord">wachtwoord</label>
-                <input type="password" name="wachtwoord" id="wachtwoord" value="password" />
-            </div>
-            <div>
-                <button name="login" id="login" type="submit">Login</button>
-            </div>
-        </form>
-    </body>
+        </div>
+</body>
 </html>
