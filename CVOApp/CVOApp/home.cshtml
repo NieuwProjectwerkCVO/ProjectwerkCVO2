@@ -11,8 +11,9 @@
                 padding: 20px;
                 text-align: center;
             }
+            .button1 {background-color: #0076C8;}
+            .button2 {background-color: #FF0000;}
             .button {
-                background-color: #0076C8;
                 width: 30%;
                 margin: 0 auto;
                 padding: 20px;
@@ -41,8 +42,11 @@
                 -ms-transition: All 0.5s ease;
                 transition: All 0.5s ease;
             }
-            button:hover {
+            .button1:hover {
                 background-color: #2faaff;
+            }
+            .button2:hover {
+                background-color: #900;
             }
         </style>
         <script type="text/javascript">
@@ -65,14 +69,15 @@
                 <li class="menu"><a class="current" href="home.cshtml">Home</a></li>
                 <li class="menu"><a href="resultaten.cshtml">Resultaten</a></li>
                 <li class="menu"><a href="Module.cshtml">Modules</a></li>
-                <li class="menuEnd"><a href="">leeg</a></li>
+                <li class="menuEnd"><a href="Evenementen.cshtml">Evenementen</a></li>
             </ul>
         </div>
         <br /><br />
         <div class="back">
-            <button class="button" onclick="window.location.href='Module.cshtml'">Modules</button>
-            <button class="button" onclick="window.location.href='resultaten.cshtml'">Resultaten</button><br />
-            <button class="button" onclick="Uitloggen()">Uitloggen</button>
+            <button class="button button1" onclick="window.location.href='Module.cshtml'">Modules</button>
+            <button class="button button1" onclick="window.location.href='resultaten.cshtml'">Resultaten</button><br />
+            <button class="button button1" onclick="window.location.href='Evenementen.cshtml'">Evenementen</button>
+            <button class="button button2" onclick="Uitloggen()">Uitloggen</button>
         </div>
     </body>
 </html>

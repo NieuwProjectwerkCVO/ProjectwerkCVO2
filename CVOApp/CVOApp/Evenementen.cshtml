@@ -5,18 +5,18 @@
     //{
     //    Response.Redirect("index.cshtml");
     //}
-    List<CVOApp.Models.Module> lijst = CVOApp.Services.SelectCursussen();
+    List<CVOApp.Models.Evenement> lijst = CVOApp.Services.SelectEvents();
 
 }
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Menu.css" />
-    <title>Modules</title>
+    <title>Evenementen</title>
     <style>
         .back {
             background-color: #0076C8;
-            width: 60%;
+            width: 80%;
             margin: 0 auto;
             padding-top: 15px;
             padding-bottom: 15px;
@@ -40,7 +40,7 @@
             background-color: white;
             color: #0076C8;
             margin-bottom: 5px;
-
+            text-align: center;
         }
         .right {
             border-radius: 0 20px 20px 0;
@@ -73,27 +73,42 @@
         <ul class="test">
             <li class="menu"><a href="home.cshtml">Home</a></li>
             <li class="menu"><a href="resultaten.cshtml">Resultaten</a></li>
-            <li class="menu"><a class="current" href="Module.cshtml">Modules</a></li>
-            <li class="menuEnd"><a href="">leeg</a></li>
+            <li class="menu"><a href="Module.cshtml">Modules</a></li>
+            <li class="menuEnd"><a class="current" href="Evenementen.cshtml">Evenementen</a></li>
         </ul>
     </div>
     <br /><br />
     <div class="back">
         <table class="tabel">
             <tr>
-                <th width="20%">Cursusnummer</th>
-                <th width="70%">Modulenaam</th>
-                <th width="10%">Plaatsen</th>
+                @*<th width="10%">Id</th>*@
+                <th width="30%">Naam</th>
+                <th width="30%">Locatie</th>
+                <th width="20%">Datum</th>
+                <th width="10%">Startuur</th>
+                <th width="10%">Einduur</th>
             </tr>
             @{
-                foreach (var m in lijst)
+                foreach (var e in lijst)
                 {
 
                     {
                         <tr class="row">
-                            <td class="left">@m.CursusNummer</td>
-                            <td class="middle">@m.Naam</td>
-                            <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>
+                            @*<td class="left">@e.Id</td>*@
+                            <td class="left">@e.Naam</td>
+                            <td class="middle">@e.Locatie</td>
+                            <td class="middle">@e.Datum.ToShortDateString()</td>
+
+                            @if (e.StartUur != e.EindUur)
+                            { 
+                                <td class="middle">@e.StartUur.ToLongTimeString()</td>
+                                <td class="right">@e.EindUur.ToLongTimeString()</td>
+                            }
+                            else
+                            {
+                                <td class="middle" style="text-align:right; padding-right:1px;">Hele</td>
+                                <td class="right" style="text-align:left; padding-left:1px;">dag.</td>
+                            }
                         </tr>
                     }
 
