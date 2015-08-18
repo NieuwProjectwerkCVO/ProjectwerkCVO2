@@ -89,7 +89,7 @@ namespace CVOApp
                     using (SqlCommand com = new SqlCommand("grp1_SelectCursussen", con))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
-                        
+
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
@@ -114,18 +114,17 @@ namespace CVOApp
             return lijst;
         }
 
-<<<<<<< HEAD
-            public static List<Lesrooster> SelectLessenByCursist(int cursistId)
-            {
 
-                List<Lesrooster> lijst = new List<Lesrooster>();
-            }
-=======
+        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
+        {
+
+            List<Lesrooster> lijst = new List<Lesrooster>();
+            return lijst;
+        }
         //public static List<Lesmoment> SelectLessen()
         //{
 
         //    List<Lesmoment> lijst = new List<Lesmoment>();
         //}
->>>>>>> origin/master
     }
 }

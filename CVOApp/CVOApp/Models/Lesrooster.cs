@@ -27,7 +27,7 @@ namespace CVOApp.Models
 
         public string Lokaal
         {
-            get { return _lokaal}
+            get { return _lokaal; }
             set { _lokaal = value;}
         }
 
