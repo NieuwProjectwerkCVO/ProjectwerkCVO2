@@ -26,5 +26,10 @@ namespace CVOApp.Models
                 HttpContext.Current.Session["LoginSession"] = value;
             }
         }
+
+        public static void logout()
+        {
+            HttpContext.Current.Session["LoginSession"] = 0;
+        }
     }
 }
