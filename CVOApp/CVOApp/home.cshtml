@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Razor
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="Menu.css" />
@@ -44,10 +45,11 @@
                 background-color: #2faaff;
             }
         </style>
-        <script>
+        <script type="text/javascript">
             function Uitloggen() {
                 var r = confirm("Bent u zeker dat u wilt uitloggen?")
                 if (r) {
+                    var f = @{CVOApp.Models.LoginClass.logout();}
                     window.location.href = "index.cshtml";
                 }
             }
