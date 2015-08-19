@@ -109,6 +109,7 @@
     <Content Include="resultaten.cshtml" />
     <Content Include="Module.cshtml" />
     <Content Include="Evenementen.cshtml" />
+    <Content Include="uitloggen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
