@@ -1,10 +1,10 @@
 ﻿@using System.Web.Razor
 @{
-    //int cursistId = CVOApp.Models.LoginClass.LoginSession;
-    //if (cursistId == 0)
-    //{
-    //    Response.Redirect("index.cshtml");
-    //}
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
     List<CVOApp.Models.Module> lijst = CVOApp.Services.SelectCursussen();
 
 }

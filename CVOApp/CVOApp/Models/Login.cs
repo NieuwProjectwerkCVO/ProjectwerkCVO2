@@ -31,5 +31,10 @@ namespace CVOApp.Models
         {
             HttpContext.Current.Session["LoginSession"] = 0;
         }
+
+        public static int loggedIn()
+        {
+            return (int)HttpContext.Current.Session["LoginSession"];
+        }
     }
 }
