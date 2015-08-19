@@ -57,7 +57,7 @@
             }
         </style>
         <script type="text/javascript">
-        @
+        
             function Uitloggen() {
                  
                  var confirm_value = document.createElement("INPUT");
@@ -65,12 +65,7 @@
                  confirm_value.name = "confirm_value";
                  var r = confirm("Bent u zeker dat u wilt uitloggen?");
                 if (r) {
-                    confirm_value.value = "Yes";
-                    document.forms[0].appendChild(confirm_value);
                     window.location.href = "uitloggen.cshtml";
-                } else {
-                    confirm_value.value = "No";
-                    document.forms[0].appendChild(confirm_value);
                 }
                 
             }
