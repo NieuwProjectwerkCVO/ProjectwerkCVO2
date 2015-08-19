@@ -50,19 +50,27 @@
             }
         </style>
         <script type="text/javascript">
-            @{int id = CVOApp.Models.LoginClass.loggedIn();}
+            @*@{int id = CVOApp.Models.LoginClass.loggedIn();}*@
             function Uitloggen() {
-                 var r = confirm("Bent u zeker dat u wilt uitloggen?")
-
+                 
+                 var confirm_value = document.createElement("INPUT");
+                 confirm_value.type = "hidden";
+                 confirm_value.name = "confirm_value";
+                 var r = confirm("Bent u zeker dat u wilt uitloggen?");
                 if (r) {
+                    confirm_value.value = "Yes";
+                    document.forms[0].appendChild(confirm_value);
                     var f = @{CVOApp.Models.LoginClass.logout();}
                     window.location.href = "index.cshtml";
+                } else {
+                    confirm_value.value = "No";
+                    document.forms[0].appendChild(confirm_value);
                 }
-
+                
             }
-            @{if (id != 0) {
+            @*@{if (id != 0) {
                   CVOApp.Models.LoginClass.LoginSession = id;
-              }}
+              }}*@
         </script>
     </head>
     <body>

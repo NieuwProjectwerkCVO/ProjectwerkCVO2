@@ -29,7 +29,12 @@ namespace CVOApp.Models
 
         public static void logout()
         {
-            HttpContext.Current.Session["LoginSession"] = 0;
+            string confirmValue = HttpContext.Current.Request.Form["confirm_value"];
+            
+            if (confirmValue == "Yes")
+            {
+                HttpContext.Current.Session["LoginSession"] = 0;
+            }
         }
 
         public static int loggedIn()
