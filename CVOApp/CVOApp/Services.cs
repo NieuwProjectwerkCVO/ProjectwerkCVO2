@@ -112,6 +112,7 @@ namespace CVOApp
             return lijst;
         }
 
+<<<<<<< HEAD
         public static List<Lesrooster> SelectLessenByCursist()
         {
             List<Lesrooster> lijst = new List<Lesrooster>();
@@ -151,5 +152,62 @@ namespace CVOApp
         }
 
         
+=======
+
+        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
+        {
+
+            List<Lesrooster> lijst = new List<Lesrooster>();
+            return lijst;
+        }
+        //public static List<Lesmoment> SelectLessen()
+        //{
+
+        //    List<Lesmoment> lijst = new List<Lesmoment>();
+        //}
+
+
+        public static List<Evenement> SelectEvents()
+        {
+            List<Evenement> lijst = new List<Evenement>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using (SqlCommand com = new SqlCommand("grp1_SelectEvents", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        con.Open();
+                        using (SqlDataReader query = com.ExecuteReader())
+                        {
+                            while (query.Read())
+                            {
+                                Evenement e = new Evenement();
+                                e.Id = Convert.ToInt32(query["Id"]);
+                                e.Naam = query["Naam"].ToString();
+                                e.Datum = Convert.ToDateTime(query["Datum"]);
+                                e.Locatie = query["Locatie"].ToString();
+                                if (query["StartUur"] != DBNull.Value && query["EindUur"] != DBNull.Value)
+                                {
+                                    e.StartUur = Convert.ToDateTime(query["StartUur"]);
+                                    e.EindUur = Convert.ToDateTime(query["EindUur"]);
+                                }
+                                lijst.Add(e);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.Write(e.Message);
+                System.Diagnostics.Debug.Write("hierboven");
+            }
+
+            return lijst;
+        }
+>>>>>>> origin/master
     }
 }

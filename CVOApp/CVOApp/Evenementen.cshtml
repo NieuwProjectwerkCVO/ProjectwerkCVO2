@@ -1,21 +1,22 @@
 ﻿@using System.Web.Razor
 @{
-    int cursistId = CVOApp.Models.LoginClass.LoginSession;
-    if (cursistId == 0)
-    {
-        Response.Redirect("index.cshtml");
-    }
-    List<CVOApp.Models.Resultaat> lijst = CVOApp.Services.ResultatenByCursistId(cursistId);
+    //int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    //if (cursistId == 0)
+    //{
+    //    Response.Redirect("index.cshtml");
+    //}
+    List<CVOApp.Models.Evenement> lijst = CVOApp.Services.SelectEvents();
+
 }
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Menu.css" />
-    <title>Resultaten</title>
+    <title>Evenementen</title>
     <style>
         .back {
             background-color: #0076C8;
-            width: 60%;
+            width: 80%;
             margin: 0 auto;
             padding-top: 15px;
             padding-bottom: 15px;
@@ -23,7 +24,6 @@
             border-radius: 15px;
             color: white;
         }
-
         .left {
             border-radius: 20px 0 0 20px;
             border-style: none;
@@ -33,7 +33,6 @@
             text-align: center;
             margin-bottom: 15px;
         }
-
         .middle {
             border-style: none;
             padding: 5px;
@@ -41,8 +40,8 @@
             background-color: white;
             color: #0076C8;
             margin-bottom: 5px;
+            text-align: center;
         }
-
         .right {
             border-radius: 0 20px 20px 0;
             border-style: none;
@@ -52,16 +51,13 @@
             text-align: center;
             margin-bottom: 5px;
         }
-
         th {
             padding-bottom: 10px;
             font-size: larger;
         }
-
         td {
             font-size: medium;
         }
-
         .tabel {
             border-spacing: 0 5px;
             width: 100%;
@@ -76,38 +72,46 @@
         <input name="" class="toggle" value="" id="toggle" type="checkbox" />
         <ul class="test">
             <li class="menu"><a href="home.cshtml">Home</a></li>
-            <li class="menu"><a class="current" href="resultaten.cshtml">Resultaten</a></li>
+            <li class="menu"><a href="resultaten.cshtml">Resultaten</a></li>
             <li class="menu"><a href="Module.cshtml">Modules</a></li>
-            <li class="menuEnd"><a href="Evenementen.cshtml">Evenementen</a></li>
+            <li class="menuEnd"><a class="current" href="Evenementen.cshtml">Evenementen</a></li>
         </ul>
     </div>
     <br /><br />
     <div class="back">
         <table class="tabel">
             <tr>
-                <th>cursusnummer</th>
-                <th>modulenaam</th>
-                <th>punten</th>
+                @*<th width="10%">Id</th>*@
+                <th width="30%">Naam</th>
+                <th width="30%">Locatie</th>
+                <th width="20%">Datum</th>
+                <th width="10%">Startuur</th>
+                <th width="10%">Einduur</th>
             </tr>
             @{
-                foreach (var r in lijst)
+                foreach (var e in lijst)
                 {
-                    if (r.Geslaagd)
-                    {
-                        <tr>
-                            <td class="left">@r.CursusNummer</td>
-                            <td class="middle">@r.ModuleNaam</td>
-                            <td class="right">@r.Totaal &#47; 100</td>
-                        </tr>
-                    }
-                    else
+
                     {
                         <tr class="row">
-                            <td class="left" style="color: red;">@r.CursusNummer</td>
-                            <td class="middle" style="color: red;">@r.ModuleNaam</td>
-                            <td class="right" style="color: red;">@r.Totaal &#47; 100</td>
+                            @*<td class="left">@e.Id</td>*@
+                            <td class="left">@e.Naam</td>
+                            <td class="middle">@e.Locatie</td>
+                            <td class="middle">@e.Datum.ToShortDateString()</td>
+
+                            @if (e.StartUur != e.EindUur)
+                            { 
+                                <td class="middle">@e.StartUur.ToLongTimeString()</td>
+                                <td class="right">@e.EindUur.ToLongTimeString()</td>
+                            }
+                            else
+                            {
+                                <td class="middle" style="text-align:right; padding-right:1px;">Hele</td>
+                                <td class="right" style="text-align:left; padding-left:1px;">dag.</td>
+                            }
                         </tr>
                     }
+
                 }
             }
         </table>
