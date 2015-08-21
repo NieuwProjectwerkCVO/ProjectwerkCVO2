@@ -1,11 +1,13 @@
 ﻿@using System.Web.Razor
 @{
+
     int cursistId = CVOApp.Models.LoginClass.LoginSession;
     if (cursistId == 0)
     {
         Response.Redirect("index.cshtml");
     }
-    List<CVOApp.Models.Module> lijst = CVOApp.Services.SelectCursussen();
+    int opleidingId = CVOApp.Models.ModuleClass.ModuleSession;
+    List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
 }
 <!DOCTYPE html>
@@ -78,7 +80,9 @@
         </ul>
     </div>
     <br /><br />
-    <div class="back">
+    <div  class="back">
+       
+        
         <table class="tabel">
             <tr>
                 <th width="20%">Cursusnummer</th>
@@ -90,7 +94,7 @@
                 {
 
                     {
-                        <tr class="row">
+                        <tr id="@m.CursusNummer" class="row">
                             <td class="left">@m.CursusNummer</td>
                             <td class="middle">@m.Naam</td>
                             <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>

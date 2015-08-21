@@ -5,54 +5,28 @@ using System.Web;
 
 namespace CVOApp.Models
 {
-    public class Module
+    public static class ModuleClass
     {
-        private string _cursusNummer;
-        private string _naam;
-        private int _aantalPlaatsen;
-        private int _beschikbarePlaatsen;
-
-        public string CursusNummer
+        public static int ModuleSession
         {
-            get { return _cursusNummer; }
-            set { _cursusNummer = value; }
+            get
+            {
+                object value = HttpContext.Current.Session["ModuleSession"];
+                if (value != null)
+                {
+                    return Convert.ToInt32(value);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["ModuleSession"] = value;
+            }
         }
-
-        public string Naam
-        {
-            get { return _naam; }
-            set { _naam = value; }
-        }
-
-        public int AantalPlaatsen
-        {
-            get { return _aantalPlaatsen; }
-            set { _aantalPlaatsen = value; }
-        }
-
-        public int BeschikbarePlaatsen
-        {
-            get { return _beschikbarePlaatsen; }
-            set { _beschikbarePlaatsen = value; }
-        }
-
-
-        public Module()
-        {
-
-        }
-
-        public Module(string naam, string cursusNummer, int aantalPlaatsen, int beschikbarePlaatsen)
-        {
-            Naam = naam;
-            CursusNummer = cursusNummer;
-            AantalPlaatsen = aantalPlaatsen;
-            BeschikbarePlaatsen = beschikbarePlaatsen;
-        }
-
-
-
-
-
     }
+
+    
 }

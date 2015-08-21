@@ -1,0 +1,44 @@
+﻿@{
+    string message = "";
+    if (IsPost)
+    {
+
+        CVOApp.Services.ModulePerOpleidingSelect(Request["opleiding"]);
+        if (CVOApp.Models.ModuleClass.ModuleSession != 0)
+        {
+            Response.Redirect("Module.cshtml");
+        }
+        else
+        {
+            message = "Kies een opleiding";
+        }
+
+    }
+
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="Menu.css" />
+    <title>Opleiding Selecteren</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <p>@message</p>
+    
+    <div class="back">
+        <form action="" method="post">
+            <button class="button button1" name="opleiding" id="opleiding" value="Boekhouden" >Boekhouding</button>
+            <button class="button button1" name="opleiding" id="opleiding" value="Informatica" >Informatica</button>
+        </form>        
+    </div>
+</body>
+</html>

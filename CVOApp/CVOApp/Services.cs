@@ -40,6 +40,35 @@ namespace CVOApp
 
         }
 
+        public static void ModulePerOpleidingSelect(string Opleiding)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using (SqlCommand com = new SqlCommand("grp1_SelectOpleidingByNaam", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add("@OpleidingNaam", System.Data.SqlDbType.NVarChar).Value = Opleiding;
+                        con.Open();
+                        using (SqlDataReader query = com.ExecuteReader())
+                        {
+                            while (query.Read())
+                            {                                
+                                    CVOApp.Models.ModuleClass.ModuleSession = Convert.ToInt32(query["Id"]);
+                                }
+                            }
+                        }
+                    }
+                }
+                        
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
         public static List<Resultaat> ResultatenByCursistId(int cursistId)
         {
             List<Resultaat> lijst = new List<Resultaat>();
@@ -76,24 +105,25 @@ namespace CVOApp
         }
 
 
-        public static List<Module> SelectCursussen()
+        public static List<Modules> SelectCursussenPerOpleiding(int id)
         {
-            List<Module> lijst = new List<Module>();
+            List<Modules> lijst = new List<Modules>();
 
             try
             {
                 using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
                 {
-                    using (SqlCommand com = new SqlCommand("grp1_SelectCursussen", con))
+                    using (SqlCommand com = new SqlCommand("grp1_SelectCursussenPerOpleiding", con))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int)).Value = id;
 
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
                             while (query.Read())
                             {
-                                Module m = new Module();
+                                Modules m = new Modules();
                                 m.Naam = query["Naam"].ToString();
                                 m.CursusNummer = query["CursusNummer"].ToString();
                                 m.AantalPlaatsen = Convert.ToInt32(query["MaximumCapaciteit"]);
@@ -112,7 +142,7 @@ namespace CVOApp
             return lijst;
         }
 
-<<<<<<< HEAD
+
         public static List<Lesrooster> SelectLessenByCursist()
         {
             List<Lesrooster> lijst = new List<Lesrooster>();
@@ -152,7 +182,7 @@ namespace CVOApp
         }
 
         
-=======
+
 
         public static List<Lesrooster> SelectLessenByCursist(int cursistId)
         {
@@ -208,6 +238,6 @@ namespace CVOApp
 
             return lijst;
         }
->>>>>>> origin/master
+
     }
 }
