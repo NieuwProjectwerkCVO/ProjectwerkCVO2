@@ -5,13 +5,13 @@ using System.Web;
 
 namespace CVOApp.Models
 {
-    public static class ModuleClass
+    public static class Opleiding
     {
-        public static int ModuleSession
+        public static int OpleidingSession
         {
             get
             {
-                object value = HttpContext.Current.Session["ModuleSession"];
+                object value = HttpContext.Current.Session["OpleidingSession"];
                 if (value != null)
                 {
                     return Convert.ToInt32(value);
@@ -23,9 +23,12 @@ namespace CVOApp.Models
             }
             set
             {
-                HttpContext.Current.Session["ModuleSession"] = value;
+                HttpContext.Current.Session["OpleidingSession"] = value;
             }
+
         }
+
+        
     }
 
     

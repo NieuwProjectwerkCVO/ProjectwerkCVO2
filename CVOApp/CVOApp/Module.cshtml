@@ -6,7 +6,7 @@
     {
         Response.Redirect("index.cshtml");
     }
-    int opleidingId = CVOApp.Models.ModuleClass.ModuleSession;
+    int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
 }
@@ -64,13 +64,30 @@
             border-spacing: 0 5px;
             width: 100%;
         }
+
+
     </style>
+
+    <script type="text/javascript">
+
+            function Registreren() {
+
+                 var confirm_value = document.createElement("INPUT");
+                 confirm_value.type = "hidden";
+                 confirm_value.name = "confirm_value";
+                 var r = confirm("Bent u zeker dat u wilt registreren?");
+                if (r) {
+                    window.location.href = "Registreren.cshtml";
+                }
+
+            }
+    </script>
 </head>
 <body>
     <div id="Menu" style="width: 100%;">
         <a href="home.cshtml"><img src="img/logocvoantwerpenLink.png" style="float:left; width: 20.5%;" /></a>
         <img src="img/logocvoantwerpen.png" style="float: left; width: 59%;" />
-        <label onclick class="lbl" for="toggle"><img src="img/MenuIcon.png" style="width: 20.5%;" /></label>
+        <label class="lbl" for="toggle"><img src="img/MenuIcon.png" style="width: 20.5%;" /></label>
         <input name="" class="toggle" value="" id="toggle" type="checkbox" />
         <ul class="test">
             <li class="menu"><a href="home.cshtml">Home</a></li>
@@ -96,7 +113,11 @@
                     {
                         <tr id="@m.CursusNummer" class="row">
                             <td class="left">@m.CursusNummer</td>
-                            <td class="middle">@m.Naam</td>
+                            <td class="middle">
+                                <ul>
+                                   <li><a id="@m.CursusNummer" href="Registreren.cshtml">@m.Naam</a></li> 
+                                </ul>
+                        </td>
                             <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>
                         </tr>
                     }

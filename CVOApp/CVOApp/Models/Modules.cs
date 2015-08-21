@@ -52,7 +52,10 @@ namespace CVOApp.Models
         }
 
 
+        public static void Registreer()
+        {
 
+        }
 
 
     }

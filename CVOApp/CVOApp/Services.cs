@@ -54,14 +54,15 @@ namespace CVOApp
                         using (SqlDataReader query = com.ExecuteReader())
                         {
                             while (query.Read())
-                            {                                
-                                    CVOApp.Models.ModuleClass.ModuleSession = Convert.ToInt32(query["Id"]);
-                                }
+                            {
+                                CVOApp.Models.Opleiding.OpleidingSession = Convert.ToInt32(query["Id"]);
+
                             }
                         }
                     }
                 }
-                        
+            }
+
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
@@ -140,6 +141,29 @@ namespace CVOApp
             }
 
             return lijst;
+        }
+
+
+
+        public static void ReserveerPlaats(int CursistId, int CursusId, DateTime date)
+        {
+            using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+            {
+                using (SqlCommand com = new SqlCommand("grp1_ReservatieModule", con))
+                {
+                    com.CommandType = System.Data.CommandType.StoredProcedure;
+                    com.Parameters.Add(new SqlParameter("@CursistId", System.Data.SqlDbType.Int)).Value = CursistId;
+                    com.Parameters.Add(new SqlParameter("@CursusId", System.Data.SqlDbType.Int)).Value = CursusId;
+                    com.Parameters.Add(new SqlParameter("@DAte", System.Data.SqlDbType.Int)).Value = date;
+
+                    con.Open();
+                    using (SqlDataReader query = com.ExecuteReader())
+                    {
+
+                    }
+                }
+            }
+
         }
 
 
