@@ -75,7 +75,7 @@
                  var confirm_value = document.createElement("INPUT");
                  confirm_value.type = "hidden";
                  confirm_value.name = "confirm_value";
-                 var r = confirm("Bent u zeker dat u wilt registreren?");
+                 var r = confirm("Bent u zeker dat u voor cursus " + @m.Naam + " wilt registreren?");
                 if (r) {
                     window.location.href = "Registreren.cshtml";
                 }
@@ -104,7 +104,7 @@
             <tr>
                 <th width="20%">Cursusnummer</th>
                 <th width="70%">Modulenaam</th>
-                <th width="10%">Plaatsen</th>
+                <th width="10%">Plaatsen</th>               
             </tr>
             @{
                 foreach (var m in lijst)
@@ -115,10 +115,10 @@
                             <td class="left">@m.CursusNummer</td>
                             <td class="middle">
                                 <ul>
-                                   <li><a id="@m.CursusNummer" href="Registreren.cshtml">@m.Naam</a></li> 
+                                   <li><a id="@m.Naam" href="Registreren.cshtml">@m.Naam</a></li> 
                                 </ul>
                         </td>
-                            <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>
+                            <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>                            
                         </tr>
                     }
 
