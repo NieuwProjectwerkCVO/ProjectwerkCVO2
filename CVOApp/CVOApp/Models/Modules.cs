@@ -7,11 +7,18 @@ namespace CVOApp.Models
 {
     public class Modules
     {
+        private int _id;
         private string _cursusNummer;
         private string _naam;
         private int _aantalPlaatsen;
         private int _beschikbarePlaatsen;
-        private DateTime _date;     
+        private DateTime _date;
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         public string CursusNummer
         {
@@ -52,12 +59,13 @@ namespace CVOApp.Models
 
         }
 
-        public Modules(string naam, string cursusNummer, int aantalPlaatsen, int beschikbarePlaatsen, string lestijden)
+        public Modules(string naam, string cursusNummer, int aantalPlaatsen, int beschikbarePlaatsen, string lestijden, int id)
         {
             Naam = naam;
             CursusNummer = cursusNummer;
             AantalPlaatsen = aantalPlaatsen;
-            BeschikbarePlaatsen = beschikbarePlaatsen;           
+            BeschikbarePlaatsen = beschikbarePlaatsen;
+            Id = id;
         }
 
         public Modules(int cursistId, int cursusId, DateTime date)
@@ -73,28 +81,6 @@ namespace CVOApp.Models
         }
 
         
-
-        public static int ModuleSession
-        {
-            get
-            {
-                object value = HttpContext.Current.Session["ModuleSession"];
-                if (value != null)
-                {
-                    return Convert.ToInt32(value);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            set
-            {
-                HttpContext.Current.Session["ModuleSession"] = value;
-            }
-
-        }
-
 
     }
 }

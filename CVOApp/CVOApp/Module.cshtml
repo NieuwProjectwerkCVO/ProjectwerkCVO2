@@ -9,6 +9,22 @@
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
+    string message = "";
+    if (IsPost)
+    {
+        
+        CVOApp.Services.ReserveerPlaats(Request[cursistId],Request["@m.Id"], Request[DateTime.Today.ToShortDateString()]);
+        if (CVOApp.Models.Opleiding.OpleidingSession != 0)
+        {
+            Response.Redirect("Module.cshtml");
+        }
+        else
+        {
+            message = "Er is iets mis gegaan";
+        }
+
+    }
+
 }
 <!DOCTYPE html>
 <html>
@@ -70,17 +86,7 @@
 
     <script type="text/javascript">
 
-            function Registreren() {
-
-                 var confirm_value = document.createElement("INPUT");
-                 confirm_value.type = "hidden";
-                 confirm_value.name = "confirm_value";
-                 var r = confirm("Bent u zeker dat u voor cursus " + @m.Naam + " wilt registreren?");
-                if (r) {
-                    window.location.href = "Registreren.cshtml";
-                }
-
-            }
+            
     </script>
 </head>
 <body>
@@ -97,34 +103,47 @@
         </ul>
     </div>
     <br /><br />
-    <div  class="back">
-       
-        
-        <table class="tabel">
-            <tr>
-                <th width="20%">Cursusnummer</th>
-                <th width="70%">Modulenaam</th>
-                <th width="10%">Plaatsen</th>               
-            </tr>
-            @{
-                foreach (var m in lijst)
-                {
+    <div class="back">
+        <form action="/" method="post">
 
+            <table class="tabel">
+                <tr>
+                    <th width="20%">Cursusnummer</th>
+                    <th width="70%">Modulenaam</th>
+                    <th width="10%">Plaatsen</th>
+                </tr>
+                @{
+                    foreach (var m in lijst)
                     {
-                        <tr id="@m.CursusNummer" class="row">
-                            <td class="left">@m.CursusNummer</td>
-                            <td class="middle">
-                                <ul>
-                                   <li><a id="@m.Naam" href="Registreren.cshtml">@m.Naam</a></li> 
-                                </ul>
-                        </td>
-                            <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>                            
-                        </tr>
+
+                        {
+                            <tr id="@m.CursusNummer" class="row">
+                                <td class="left">
+                                    <ul>
+                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.CursusNummer</a></li>
+                                    </ul>
+                                </td>
+                                <td class="middle">
+                                    <ul>
+                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
+                                    </ul>
+                                </td>
+                                <td class="right">
+                                    <ul>
+                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</a></li>
+                                    </ul>
+                                </td>
+                                
+                            </tr>
+                        }
+
                     }
 
                 }
-            }
-        </table>
-    </div>
+
+            </table>
+        </form>
+
+     </div>
 </body>
 </html>

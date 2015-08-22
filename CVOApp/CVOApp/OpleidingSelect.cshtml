@@ -1,5 +1,10 @@
 ﻿@{
     string message = "";
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
     if (IsPost)
     {
 
@@ -15,11 +20,7 @@
 
     }
 
-    int cursistId = CVOApp.Models.LoginClass.LoginSession;
-    if (cursistId == 0)
-    {
-        Response.Redirect("index.cshtml");
-    }
+
 }
 
 <!DOCTYPE html>

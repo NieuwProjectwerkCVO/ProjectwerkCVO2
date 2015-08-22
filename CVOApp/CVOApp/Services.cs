@@ -70,37 +70,7 @@ namespace CVOApp
 
         }
 
-        public static void ModuleSelectByCursusnummer(int cursusNummer)
-        {
-            CVOApp.Models.Modules.ModuleSession = 0;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
-                {
-                    using (SqlCommand com = new SqlCommand("grp1_SelectOpleidingByNaam", con))
-                    {
-                        com.CommandType = System.Data.CommandType.StoredProcedure;
-                        com.Parameters.Add("@CursusNummer", System.Data.SqlDbType.NVarChar).Value = cursusNummer;
-                        con.Open();
-                        using (SqlDataReader query = com.ExecuteReader())
-                        {
-                            while (query.Read())
-                            {
-                                CVOApp.Models.Modules.ModuleSession = Convert.ToInt32(query["Id"]);
-
-                            }
-                        }
-                    }
-                }
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-        }
+        
 
         public static List<Resultaat> ResultatenByCursistId(int cursistId)
         {
@@ -160,7 +130,8 @@ namespace CVOApp
                                 m.Naam = query["Naam"].ToString();
                                 m.CursusNummer = query["CursusNummer"].ToString();
                                 m.AantalPlaatsen = Convert.ToInt32(query["MaximumCapaciteit"]);
-                                m.BeschikbarePlaatsen = Convert.ToInt32(query["AantalPlaatsenBeschikbaar"]);                               
+                                m.BeschikbarePlaatsen = Convert.ToInt32(query["AantalPlaatsenBeschikbaar"]);
+                                m.Id= Convert.ToInt32(query["Id"]);
                                 lijst.Add(m);
                             }
                         }
@@ -242,6 +213,8 @@ namespace CVOApp
           return lijst;
         }
 
+
+        
         
 
 
