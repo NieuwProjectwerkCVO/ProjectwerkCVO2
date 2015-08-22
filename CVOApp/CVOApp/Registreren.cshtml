@@ -1,5 +1,17 @@
 ﻿@{
-    CVOApp.Models.Modules.Registreer();
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
+
+    int cursusId = CVOApp.Models.Modules.ModuleSession;
+    if (cursusId == 0)
+    {
+        Response.Redirect("Module.cshtml");
+    }
+
+    CVOApp.Services.ReserveerPlaats(cursistId, cursusId, DateTime.Now);
     Response.Redirect("Module.cshtml");
 }
 

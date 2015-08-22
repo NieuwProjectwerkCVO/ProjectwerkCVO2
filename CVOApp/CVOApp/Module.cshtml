@@ -13,15 +13,16 @@
     if (IsPost)
     {
 
-        //CVOApp.Services.ReserveerPlaats(Request[cursistId],Request["@m.Id"], Request[DateTime.Today.ToShortDateString()]);
+        CVOApp.Services.ModulePerOpleidingSelect("@m.Id");
         if (CVOApp.Models.Opleiding.OpleidingSession != 0)
         {
             Response.Redirect("Module.cshtml");
         }
         else
         {
-            message = "Er is iets mis gegaan";
+            message = "Kies een opleiding";
         }
+
 
     }
 
@@ -125,7 +126,7 @@
                                 </td>
                                 <td class="middle">
                                     <ul>
-                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
+                                        <li><a id="@m.Id"name="@m.Id" value="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
                                     </ul>
                                 </td>
                                 <td class="right">
