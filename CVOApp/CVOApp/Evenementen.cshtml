@@ -7,6 +7,7 @@
     //}
     List<CVOApp.Models.Evenement> lijst = CVOApp.Services.SelectEvents();
 
+    
 }
 <!DOCTYPE html>
 <html>
@@ -62,15 +63,37 @@
             border-spacing: 0 5px;
             width: 100%;
         }
-    </style>
-    <script type="text/javascript">
-        function Inschrijven(id, naam) {
-            if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
-            {
-                var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
-                
-            }
+        .selected td {
+            background-color: #2faaff;
+            color: white;
         }
+        .row:hover td {
+            background-color: #d9efff;
+            cursor: pointer;
+        }
+        
+    </style>
+
+    <script>
+        //function Inschrijven(id, naam) {
+        //    if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
+        //    {
+        //        var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
+
+        //    }
+        //}
+        
+        function select(id) {
+            var rij = document.getElementById(id);
+            rij.addClass('selected');
+                //.siblings().removeClass('selected');
+            var value = rij.find('td:first').html();
+            alert(id);
+        }
+
+        //$('.ok').on('click', function (e) {
+        //    alert($("#table tr.selected td:first").html());
+        //});
     </script>
 </head>
 <body>
@@ -101,7 +124,7 @@
                 {
 
                     {
-                        <tr class="row" onclick="Inschrijven(@e.Id, @e.Naam)">
+                        <tr id="@e.Id" onclick="select($(this).id)" class="row">
                             <td class="left">@e.Naam</td>
                             <td class="middle">@e.Locatie</td>
                             <td class="middle">@e.Datum.ToShortDateString()</td>
