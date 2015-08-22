@@ -175,9 +175,6 @@ namespace CVOApp
             return lijst;
         }
 
-<<<<<<< HEAD
-=======
-
 
         public static void ReserveerPlaats(int CursistId, int CursusId, DateTime date)
         {
@@ -205,9 +202,7 @@ namespace CVOApp
 
         }
 
-
->>>>>>> origin/master
-        public static List<Lesrooster> SelectLessenByCursist()
+        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
         {
             List<Lesrooster> lijst = new List<Lesrooster>();
 
@@ -244,20 +239,6 @@ namespace CVOApp
                }
           return lijst;
         }
-
-<<<<<<< HEAD
-=======
-        
-
->>>>>>> origin/master
-
-        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
-        {
-
-            List<Lesrooster> lijst = new List<Lesrooster>();
-            return lijst;
-        }
-
 
         public static List<Evenement> SelectEvents()
         {
@@ -300,9 +281,5 @@ namespace CVOApp
 
             return lijst;
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     }
 }
