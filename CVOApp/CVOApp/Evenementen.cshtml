@@ -63,6 +63,15 @@
             width: 100%;
         }
     </style>
+    <script type="text/javascript">
+        function Inschrijven(id, naam) {
+            if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
+            {
+                var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
+                
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="Menu" style="width: 100%;">
@@ -81,7 +90,6 @@
     <div class="back">
         <table class="tabel">
             <tr>
-                @*<th width="10%">Id</th>*@
                 <th width="30%">Naam</th>
                 <th width="30%">Locatie</th>
                 <th width="20%">Datum</th>
@@ -93,8 +101,7 @@
                 {
 
                     {
-                        <tr class="row">
-                            @*<td class="left">@e.Id</td>*@
+                        <tr class="row" onclick="Inschrijven(@e.Id, @e.Naam)">
                             <td class="left">@e.Naam</td>
                             <td class="middle">@e.Locatie</td>
                             <td class="middle">@e.Datum.ToShortDateString()</td>
