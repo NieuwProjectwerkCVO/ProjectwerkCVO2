@@ -1,0 +1,96 @@
+﻿@{
+    string message = "";
+    if (IsPost)
+    {
+
+        CVOApp.Services.ModulePerOpleidingSelect(Request["opleiding"]);
+        if (CVOApp.Models.Opleiding.OpleidingSession != 0)
+        {
+            Response.Redirect("Module.cshtml");
+        }
+        else
+        {
+            message = "Kies een opleiding";
+        }
+
+    }
+
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="Menu.css" />
+    <title>Opleiding Selecteren</title>
+    <style>
+       .back {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            }
+       .button1 {background-color: #0076C8;}
+           
+       .button {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1em;
+            letter-spacing: .8px;
+            font-weight: normal;
+            font-family: 'Arial Rounded MT';
+
+                 /*Gradient*/
+            background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+            background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+            background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+            background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+            background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  
+                 /*Shadow*/
+            -webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+                 /*Transition*/
+            -webkit-transition: All 0.5s ease;
+            -moz-transition: All 0.5s ease;
+            -o-transition: All 0.5s ease;
+            -ms-transition: All 0.5s ease;
+            transition: All 0.5s ease;
+        }
+        .button1:hover {
+            background-color: #2faaff;
+        }
+    </style>
+</head>
+<body>
+    <div id="Menu" style="width: 100%;">
+        <a href="home.cshtml"><img src="img/logocvoantwerpenLink.png" style="float:left; width: 20.5%;" /></a>
+        <img src="img/logocvoantwerpen.png" style="float: left; width: 59%;" />
+        <label  class="lbl" for="toggle"><img src="img/MenuIcon.png" style="width: 20.5%;" /></label>
+        <input name="" class="toggle" value="" id="toggle" type="checkbox" />
+        <ul class="test">
+            <li class="menu"><a href="home.cshtml">Home</a></li>
+            <li class="menu"><a href="resultaten.cshtml">Resultaten</a></li>
+            <li class="menu"><a class="current" href="OpleidingSelect.cshtml">Modules</a></li>
+            <li class="menuEnd"><a href="Evenementen.cshtml">Evenementen</a></li>
+        </ul>
+    </div>
+    <br /><br />
+    <p>@message</p>
+    
+    <div class="back">
+        <form action="" method="post">
+            <button class="button button1" name="opleiding" id="opleiding" value="Boekhouden" >Boekhouding</button>
+            <button class="button button1" name="opleiding" id="opleiding" value="Informatica" >Informatica</button>
+        </form>        
+    </div>
+</body>
+</html>

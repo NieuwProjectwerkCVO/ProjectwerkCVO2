@@ -97,7 +97,8 @@
     <Compile Include="Models\Evenement.cs" />
     <Compile Include="Models\Lesrooster.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\Opleiding.cs" />
+    <Compile Include="Models\Modules.cs" />
     <Compile Include="Models\Resultaat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs" />
@@ -110,6 +111,8 @@
     <Content Include="Module.cshtml" />
     <Content Include="Evenementen.cshtml" />
     <Content Include="uitloggen.cshtml" />
+    <Content Include="OpleidingSelect.cshtml" />
+    <Content Include="Registreren.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
