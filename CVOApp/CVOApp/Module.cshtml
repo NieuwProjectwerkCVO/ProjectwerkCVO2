@@ -12,8 +12,8 @@
     string message = "";
     if (IsPost)
     {
-        
-        CVOApp.Services.ReserveerPlaats(Request[cursistId],Request["@m.Id"], Request[DateTime.Today.ToShortDateString()]);
+
+        //CVOApp.Services.ReserveerPlaats(Request[cursistId],Request["@m.Id"], Request[DateTime.Today.ToShortDateString()]);
         if (CVOApp.Models.Opleiding.OpleidingSession != 0)
         {
             Response.Redirect("Module.cshtml");
