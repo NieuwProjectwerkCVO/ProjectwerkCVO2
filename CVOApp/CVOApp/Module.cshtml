@@ -110,7 +110,7 @@
 
                         {
                             <tr id="@m.Id" onclick="select(this.id)" class="row">
-                                <td class="left">@m.CursusNummer</td>
+                                <td id="@m.CursusNummer" class="left">@m.CursusNummer</td>
                                 <td class="middle">@m.Naam</td>
                                <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>                                
                             </tr>
@@ -126,11 +126,11 @@
      </div>
     <script>
         function select(id) {
-            alert(id);
-            //var rij = document.getElementById(id);
-            //rij.addClass('selected');
-            //var value = rij.find('td:first').html();
-            //alert(value);
+            //alert(id);
+            var rij = document.getElementById(id);
+            rij.className += " selected";
+            var value = rij.firstElementChild.id.toString();
+            alert(value);
         }
 
     </script>
