@@ -120,7 +120,7 @@ namespace CVOApp
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
                         com.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int)).Value = id;
-
+                        
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
@@ -185,12 +185,11 @@ namespace CVOApp
             {
                 using(SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
                 {
-                    using (SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer"))
+                    using (SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer", con))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
                         com.Parameters.Add("@idCursist", System.Data.SqlDbType.Int).Value = cursistId;
-
-                        con.Open();
+                        
                         using (SqlDataReader query = com.ExecuteReader())
                         {
                             while(query.Read())
@@ -204,6 +203,7 @@ namespace CVOApp
                                 l.Module = query["Module"].ToString();
                                 l.Van = Convert.ToDateTime(query["Van"]);
                                 l.Tot = Convert.ToDateTime(query["Tot"]);
+                                lijst.Add(l);
                             }
                         }
                     }
