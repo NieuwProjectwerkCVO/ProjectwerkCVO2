@@ -188,8 +188,9 @@ namespace CVOApp
                     using (SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer", con))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
-                        com.Parameters.Add("@idCursist", System.Data.SqlDbType.Int).Value = cursistId;
-                        
+                        com.Parameters.Add("@cursistId", System.Data.SqlDbType.Int).Value = cursistId;
+
+                        con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
                         {
                             while(query.Read())
@@ -206,6 +207,7 @@ namespace CVOApp
                                 lijst.Add(l);
                             }
                         }
+                        con.Close();
                     }
                 }
             }
@@ -214,6 +216,8 @@ namespace CVOApp
                     Console.WriteLine(e.Message);
                }
           return lijst;
+
+           
         }
 
 
