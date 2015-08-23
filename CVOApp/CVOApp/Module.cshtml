@@ -10,6 +10,8 @@
     {
         //string cursusId = Request["registreer"];
         CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);
+        CVOApp.Services.UpdatePlaatsen(Convert.ToInt32(Request["registreren"]));
+        Response.Redirect("Module.cshtml");
     }
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
@@ -126,26 +128,19 @@
                     {
 
                         {
-                            <tr id="@m.CursusNummer" class="row">
+                            <tr id="@m.Id" class="row">
                                 <td class="left">
-                                    <ul>
-                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.CursusNummer</a></li>
-                                    </ul>
+                                     @m.CursusNummer
                                 </td>
                                 <td class="middle">
-                                    <ul>
-                                        <li><a id="@m.Id" name="@m.Id" value="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
-                                    </ul>
+                                    @m.Naam
                                 </td>
-                                <td class="right">
-                                    <ul>
-                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</a></li>
-                                    </ul>
+                                <td class="right">                                    
+                                    @m.BeschikbarePlaatsen/@m.AantalPlaatsen                                   
                                 </td>
                                 <td>
-                                    <ul>
-                                        <li><button type="submit" name="registreren" id="registreren" value="@m.Id")">registreren</button></li>
-                                    </ul>
+                                    <button type="submit" name="registreren" id="registreren" value="@m.Id">registreren</button>
+                                    
                                 </td>
                             </tr>
                         }
