@@ -12,6 +12,7 @@
         
         //string cursusId = Request["registreer"];
         //CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["inschrijven"]), DateTime.Now);
+        CVOApp.Services.EvenementInschrijving(cursistId, DateTime.Now, Request["inschrijven"]);
     }
 }
 <!DOCTYPE html>
@@ -145,8 +146,8 @@
             
             var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
             document.getElementById(id + " ins").value = id.toString() + ";" + opm;
-            alert(document.getElementById(id + " ins").value.toString());
-            //document.getElementById('ins ' + id).click();
+            //alert(document.getElementById(id + " ins").value.toString());
+            document.getElementById(id + " ins").click();
         }
     </script>
 
