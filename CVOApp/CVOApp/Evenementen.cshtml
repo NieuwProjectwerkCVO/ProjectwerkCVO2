@@ -1,13 +1,18 @@
 ﻿@using System.Web.Razor
 @{
-    //int cursistId = CVOApp.Models.LoginClass.LoginSession;
-    //if (cursistId == 0)
-    //{
-    //    Response.Redirect("index.cshtml");
-    //}
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
     List<CVOApp.Models.Evenement> lijst = CVOApp.Services.SelectEvents();
 
-    
+    if (IsPost)
+    {
+        
+        //string cursusId = Request["registreer"];
+        //CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["inschrijven"]), DateTime.Now);
+    }
 }
 <!DOCTYPE html>
 <html>
@@ -117,6 +122,7 @@
                                 <td class="middle" style="text-align:right; padding-right:1px;">Hele</td>
                                 <td class="right" style="text-align:left; padding-left:1px;">dag.</td>
                             }
+                            <td style="display:none;"><button style="display:none;" value="@e.Id" type="submit" name="inschrijven" id="@e.Id ins"></button></td>
                         </tr>
                     }
 
@@ -129,23 +135,19 @@
             //alert(id);
             var rij = document.getElementById(id);
             
+
             for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
                 document.getElementById('tbl').rows[i].className = "row";
             }
             
             rij.className += " selected";
-            //rij.addClass('selected');
-            //.siblings().removeClass('selected');
             var value = rij.firstElementChild.id.toString();
             
-            //var value = rij.find('td:first').html();
-            //prompt("heeft u nog opmerkingen bij uw inschrijving?", value)
-
+            var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
+            document.getElementById(id + " ins").value = id.toString() + ";" + opm;
+            alert(document.getElementById(id + " ins").value.toString());
+            //document.getElementById('ins ' + id).click();
         }
-
-        //$('.ok').on('click', function (e) {
-        //    alert($("#table tr.selected td:first").html());
-        //});
     </script>
 
 </body>
