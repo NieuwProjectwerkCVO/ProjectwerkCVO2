@@ -75,6 +75,7 @@
         }
         .row:hover td {
             background-color: #d9efff;
+            color: #0076C8;
             cursor: pointer;
         }
         
@@ -135,21 +136,21 @@
     </div>
     <script>
         function select(id) {
-            //alert(id);
             var rij = document.getElementById(id);
-            
 
             for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
                 document.getElementById('tbl').rows[i].className = "row";
             }
             
             rij.className += " selected";
-            var value = rij.firstElementChild.id.toString();
             
-            //var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
-            document.getElementById(id + " ins").value = id.toString() + ";" + prompt("heeft u nog opmerkingen bij uw inschrijving?");
-            //alert(document.getElementById(id + " ins").value.toString());
-            document.getElementById(id + " ins").click();
+            var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
+            if (opm != null) {
+                document.getElementById(id + " ins").value = id.toString() + ";" + opm;
+                document.getElementById(id + " ins").click();
+            }
+            //document.getElementById(id + " ins").value = id.toString() + ";" + opm;
+            //document.getElementById(id + " ins").click();
         }
     </script>
 
