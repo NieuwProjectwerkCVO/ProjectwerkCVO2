@@ -188,6 +188,7 @@ namespace CVOApp
                     using (SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer"))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add("@idCursist", System.Data.SqlDbType.Int).Value = cursistId;
 
                         con.Open();
                         using (SqlDataReader query = com.ExecuteReader())
