@@ -6,11 +6,16 @@
     {
         Response.Redirect("index.cshtml");
     }
+    if (IsPost)
+    {
+        //string cursusId = Request["registreer"];
+        CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);
+    }
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
     string message = "";
-    if (IsPost)
+    /*if (IsPost)
     {
 
         CVOApp.Services.ModulePerOpleidingSelect("@m.Id");
@@ -24,7 +29,7 @@
         }
 
 
-    }
+    }*/
 
 }
 <!DOCTYPE html>
@@ -43,6 +48,7 @@
             border-radius: 15px;
             color: white;
         }
+
         .left {
             border-radius: 20px 0 0 20px;
             border-style: none;
@@ -52,6 +58,7 @@
             text-align: center;
             margin-bottom: 15px;
         }
+
         .middle {
             border-style: none;
             padding: 5px;
@@ -59,8 +66,8 @@
             background-color: white;
             color: #0076C8;
             margin-bottom: 5px;
-
         }
+
         .right {
             border-radius: 0 20px 20px 0;
             border-style: none;
@@ -70,24 +77,25 @@
             text-align: center;
             margin-bottom: 5px;
         }
+
         th {
             padding-bottom: 10px;
             font-size: larger;
         }
+
         td {
             font-size: medium;
         }
+
         .tabel {
             border-spacing: 0 5px;
             width: 100%;
         }
-
-
     </style>
 
     <script type="text/javascript">
 
-            
+
     </script>
 </head>
 <body>
@@ -105,7 +113,7 @@
     </div>
     <br /><br />
     <div class="back">
-        <form action="/" method="post">
+        <form action="" method="post">
 
             <table class="tabel">
                 <tr>
@@ -126,7 +134,7 @@
                                 </td>
                                 <td class="middle">
                                     <ul>
-                                        <li><a id="@m.Id"name="@m.Id" value="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
+                                        <li><a id="@m.Id" name="@m.Id" value="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
                                     </ul>
                                 </td>
                                 <td class="right">
@@ -134,7 +142,11 @@
                                         <li><a id="@m.Id" href="Registreren.cshtml">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</a></li>
                                     </ul>
                                 </td>
-                                
+                                <td>
+                                    <ul>
+                                        <li><button type="submit" name="registreren" id="registreren" value="@m.Id")">registreren</button></li>
+                                    </ul>
+                                </td>
                             </tr>
                         }
 
@@ -145,6 +157,6 @@
             </table>
         </form>
 
-     </div>
+    </div>
 </body>
 </html>

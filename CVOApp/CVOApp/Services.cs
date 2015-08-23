@@ -159,7 +159,7 @@ namespace CVOApp
                         com.CommandType = System.Data.CommandType.StoredProcedure;
                         com.Parameters.Add(new SqlParameter("@CursistId", System.Data.SqlDbType.Int)).Value = CursistId;
                         com.Parameters.Add(new SqlParameter("@CursusId", System.Data.SqlDbType.Int)).Value = CursusId;
-                        com.Parameters.Add(new SqlParameter("@Date", System.Data.SqlDbType.Int)).Value = date;
+                        com.Parameters.Add(new SqlParameter("@DateTime", System.Data.SqlDbType.DateTime)).Value = date;
 
                         con.Open();
                         com.ExecuteNonQuery();
