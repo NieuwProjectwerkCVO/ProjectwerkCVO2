@@ -205,7 +205,7 @@ namespace CVOApp
             {
                 using(SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
                 {
-                    using(SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer"))
+                    using (SqlCommand com = new SqlCommand("grp1_SelectAlleLessenByCursistNummer"))
                     {
                         com.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -216,13 +216,13 @@ namespace CVOApp
                             {
                                 Lesrooster l = new Lesrooster();
                                 l.CursusNummer = query["Cursusnummer"].ToString();
-                                l.LesDatum = Convert.ToDateTime(query["Datum"]);
+                                l.Datum = Convert.ToDateTime(query["Datum"]);
                                 l.Campus = query["Campus"].ToString();
                                 l.Docent = query["Docent"].ToString();
                                 l.Lokaal = query["Lokaal"].ToString();
-                                l.ModuleNaam = query["Modulenaam"].ToString();
-                                l.StartTijd = Convert.ToDateTime(query["Starttijd"]);
-                                l.EindTijd = Convert.ToDateTime(query["Eindtijd"]);
+                                l.Module = query["Module"].ToString();
+                                l.Van = Convert.ToDateTime(query["Van"]);
+                                l.Tot = Convert.ToDateTime(query["Tot"]);
                             }
                         }
                     }

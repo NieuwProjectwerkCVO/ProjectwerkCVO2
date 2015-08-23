@@ -8,11 +8,11 @@ namespace CVOApp.Models
     public class Lesrooster
     {
         private string _cursusNummer;
-        private string _moduleNaam;
-        private DateTime _lesDatum;
+        private string _module;
+        private DateTime _datum;
         private string _lokaal;
-        private DateTime _startTijd;
-        private DateTime _eindTijd;
+        private DateTime _van;
+        private DateTime _tot;
         private string _campus;
         private string _docent;
 
@@ -22,10 +22,10 @@ namespace CVOApp.Models
             set { _cursusNummer = value; }
         }
 
-        public string ModuleNaam
+        public string Module
         {
-            get { return _moduleNaam; }
-            set { _moduleNaam = value; }
+            get { return _module; }
+            set { _module = value; }
         }
 
         public string Lokaal
@@ -34,22 +34,22 @@ namespace CVOApp.Models
             set { _lokaal = value;}
         }
 
-        public DateTime LesDatum
+        public DateTime Datum
         {
-            get { return _lesDatum; }
-            set { _lesDatum = value; }
+            get { return _datum; }
+            set { _datum = value; }
         }
 
-        public DateTime StartTijd
+        public DateTime Van
         {
-            get { return _startTijd; }
-            set { _startTijd = value; }
+            get { return _van; }
+            set { _van = value; }
         }
 
-        public DateTime EindTijd
+        public DateTime Tot
         {
-            get { return _eindTijd; }
-            set { _eindTijd = value; }
+            get { return _tot; }
+            set { _tot = value; }
         }
 
         public string Campus
@@ -70,14 +70,14 @@ namespace CVOApp.Models
 
         }
 
-        public Lesrooster(string moduleNaam, string cursusNummer, DateTime lesDatum, DateTime startTijd, DateTime eindTijd, string docent, string campus, string lokaal)
+        public Lesrooster(string module, string cursusNummer, DateTime datum, DateTime van, DateTime tot, string docent, string campus, string lokaal)
         {
-            ModuleNaam = moduleNaam;
+            Module = module;
             CursusNummer = cursusNummer;
-            LesDatum = lesDatum;
+            Datum = datum;
             Docent = docent;
-            StartTijd = startTijd;
-            EindTijd = eindTijd;
+            Van = van;
+            Tot = tot;
             Campus = campus;
             Lokaal = lokaal;
         }
