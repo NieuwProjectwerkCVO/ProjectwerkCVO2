@@ -9,22 +9,8 @@
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
-    string message = "";
-    if (IsPost)
-    {
-
-        CVOApp.Services.ModulePerOpleidingSelect("@m.Id");
-        if (CVOApp.Models.Opleiding.OpleidingSession != 0)
-        {
-            Response.Redirect("Module.cshtml");
-        }
-        else
-        {
-            message = "Kies een opleiding";
-        }
-
-
-    }
+    
+   
 
 }
 <!DOCTYPE html>
@@ -81,12 +67,25 @@
             border-spacing: 0 5px;
             width: 100%;
         }
+        .selected td {
+            background-color: #2faaff;
+            color: white;
+        }
+        .row:hover td {
+            background-color: #d9efff;
+            cursor: pointer;
+        }
 
 
     </style>
 
     <script type="text/javascript">
-
+        function select(id) {
+            var rij = document.getElementById(id);
+            rij.addClass('selected');
+            var value = rij.find('td:first').html();
+            alert(id);
+        }
             
     </script>
 </head>
@@ -118,23 +117,10 @@
                     {
 
                         {
-                            <tr id="@m.CursusNummer" class="row">
-                                <td class="left">
-                                    <ul>
-                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.CursusNummer</a></li>
-                                    </ul>
-                                </td>
-                                <td class="middle">
-                                    <ul>
-                                        <li><a id="@m.Id"name="@m.Id" value="@m.Id" href="Registreren.cshtml">@m.Naam</a></li>
-                                    </ul>
-                                </td>
-                                <td class="right">
-                                    <ul>
-                                        <li><a id="@m.Id" href="Registreren.cshtml">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</a></li>
-                                    </ul>
-                                </td>
-                                
+                            <tr id="@m.Id" onclick="select($(this).id)" class="row">
+                                <td class="left">@m.CursusNummer</td>
+                                <td class="middle">@m.Naam</td>
+                               <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>                                
                             </tr>
                         }
 
