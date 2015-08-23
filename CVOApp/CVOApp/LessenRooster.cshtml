@@ -108,7 +108,7 @@
                 {
                     <tr class="row">
                         <td class="left">
-                            @l.Datum
+                            @l.Datum.ToShortDateString()
                         </td>
                         <td class="middle">
                             @l.Docent
@@ -120,10 +120,10 @@
                             @l.Lokaal
                         </td>
                         <td class="middle">
-                            @l.Van
+                            @l.Van.ToShortTimeString()
                         </td>
                         <td class="middle">
-                            @l.Tot
+                            @l.Tot.ToShortTimeString()
                         </td>
                         <td class="middle">
                             @l.CursusNummer
