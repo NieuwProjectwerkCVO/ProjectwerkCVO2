@@ -9,8 +9,7 @@
     if (IsPost)
     {
         //string cursusId = Request["registreer"];
-        CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);
-        CVOApp.Services.UpdatePlaatsen(Convert.ToInt32(Request["registreren"]));
+        CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);        
         Response.Redirect("Module.cshtml");
     }
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
