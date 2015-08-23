@@ -74,27 +74,32 @@
         
     </style>
 
-    <script>
-        //function Inschrijven(id, naam) {
-        //    if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
-        //    {
-        //        var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
-
-        //    }
-        //}
+    @*<script>
+        $(document).ready(function () {
+            
         
-        function select(id) {
-            var rij = document.getElementById(id);
-            rij.addClass('selected');
-                //.siblings().removeClass('selected');
-            var value = rij.find('td:first').html();
-            alert(id);
-        }
+            //function Inschrijven(id, naam) {
+            //    if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
+            //    {
+            //        var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
 
-        //$('.ok').on('click', function (e) {
-        //    alert($("#table tr.selected td:first").html());
-        //});
-    </script>
+            //    }
+            //}
+        
+            function bla(id) {
+                //var rij = document.getElementById(id);
+                //rij.addClass('selected');
+                    //.siblings().removeClass('selected');
+                //var value = rij.find('td:first').html();
+                alert(id);
+            
+            }
+
+            //$('.ok').on('click', function (e) {
+            //    alert($("#table tr.selected td:first").html());
+            //});
+        });
+    </script>*@
 </head>
 <body>
     <div id="Menu" style="width: 100%;">
@@ -124,8 +129,8 @@
                 {
 
                     {
-                        <tr id="@e.Id" onclick="select($(this).id)" class="row">
-                            <td class="left">@e.Naam</td>
+                        <tr id="@e.Id" onclick="select(this.id);" class="row">
+                            <td id="@e.Naam" class="left">@e.Naam</td>
                             <td class="middle">@e.Locatie</td>
                             <td class="middle">@e.Datum.ToShortDateString()</td>
 
@@ -146,5 +151,32 @@
             }
         </table>
     </div>
+    <script>
+        //function Inschrijven(id, naam) {
+        //    if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
+        //    {
+        //        var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
+
+        //    }
+        //}
+
+        function select(id) {
+            //alert(id);
+            var rij = document.getElementById(id);
+            rij.className += " selected";
+            //rij.addClass('selected');
+            //.siblings().removeClass('selected');
+            var value = rij.firstElementChild.id.toString();
+            
+            //var value = rij.find('td:first').html();
+            prompt("heeft u nog opmerkingen bij uw inschrijving?", value)
+
+        }
+
+        //$('.ok').on('click', function (e) {
+        //    alert($("#table tr.selected td:first").html());
+        //});
+    </script>
+
 </body>
 </html>
