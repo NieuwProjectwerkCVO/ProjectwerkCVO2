@@ -295,5 +295,37 @@ namespace CVOApp
             return lijst;
         }
 
+        public static void EvenementInschrijving(int CursistId, DateTime date, string EvidOpm)
+        {
+            string[] splits = EvidOpm.Split(';');
+            string EvId = splits[0];
+            string Opm = splits[1];
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString))
+                {
+                    using (SqlCommand com = new SqlCommand("grp1_InsertEventInschrijving", con))
+                    {
+                        com.CommandType = System.Data.CommandType.StoredProcedure;
+                        com.Parameters.Add(new SqlParameter("@IdCursist", System.Data.SqlDbType.Int)).Value = CursistId;
+                        com.Parameters.Add(new SqlParameter("@IdEvenement", System.Data.SqlDbType.Int)).Value = EvId;
+                        com.Parameters.Add(new SqlParameter("@Datum", System.Data.SqlDbType.DateTime)).Value = date;
+                        com.Parameters.Add(new SqlParameter("@Opmerking", System.Data.SqlDbType.NVarChar)).Value = Opm;
+                        SqlParameter id = new SqlParameter("@Id", System.Data.SqlDbType.Int);
+                        id.Direction = System.Data.ParameterDirection.Output;
+                        com.Parameters.Add(id);
+                        con.Open();
+                        com.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
     }
 }

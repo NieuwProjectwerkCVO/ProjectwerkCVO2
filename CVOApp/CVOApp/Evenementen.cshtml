@@ -12,6 +12,7 @@
         
         //string cursusId = Request["registreer"];
         //CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["inschrijven"]), DateTime.Now);
+        CVOApp.Services.EvenementInschrijving(cursistId, DateTime.Now, Request["inschrijven"]);
     }
 }
 <!DOCTYPE html>
@@ -74,6 +75,7 @@
         }
         .row:hover td {
             background-color: #d9efff;
+            color: #0076C8;
             cursor: pointer;
         }
         
@@ -95,59 +97,61 @@
     </div>
     <br /><br />
     <div class="back">
-        <table id="tbl" class="tabel">
-            <tr>
-                <th width="30%">Naam</th>
-                <th width="30%">Locatie</th>
-                <th width="20%">Datum</th>
-                <th width="10%">Startuur</th>
-                <th width="10%">Einduur</th>
-            </tr>
-            @{
-                foreach (var e in lijst)
-                {
-
+        <form action="" method="post">
+            <table id="tbl" class="tabel">
+                <tr>
+                    <th width="30%">Naam</th>
+                    <th width="30%">Locatie</th>
+                    <th width="20%">Datum</th>
+                    <th width="10%">Startuur</th>
+                    <th width="10%">Einduur</th>
+                </tr>
+                @{
+                    foreach (var e in lijst)
                     {
-                        <tr id="@e.Id" onclick="select(this.id);" class="row">
-                            <td id="@e.Naam" class="left">@e.Naam</td>
-                            <td class="middle">@e.Locatie</td>
-                            <td class="middle">@e.Datum.ToShortDateString()</td>
 
-                            @if (e.StartUur != e.EindUur)
-                            { 
-                                <td class="middle">@e.StartUur.ToLongTimeString()</td>
-                                <td class="right">@e.EindUur.ToLongTimeString()</td>
-                            }
-                            else
-                            {
-                                <td class="middle" style="text-align:right; padding-right:1px;">Hele</td>
-                                <td class="right" style="text-align:left; padding-left:1px;">dag.</td>
-                            }
-                            <td style="display:none;"><button style="display:none;" value="@e.Id" type="submit" name="inschrijven" id="@e.Id ins"></button></td>
-                        </tr>
+                        {
+                            <tr id="@e.Id" onclick="select(this.id);" class="row">
+                                <td id="@e.Naam" class="left">@e.Naam</td>
+                                <td class="middle">@e.Locatie</td>
+                                <td class="middle">@e.Datum.ToShortDateString()</td>
+
+                                @if (e.StartUur != e.EindUur)
+                                {
+                                    <td class="middle">@e.StartUur.ToLongTimeString()</td>
+                                    <td class="right">@e.EindUur.ToLongTimeString()</td>
+                                }
+                                else
+                                {
+                                    <td class="middle" style="text-align:right; padding-right:1px;">Hele</td>
+                                    <td class="right" style="text-align:left; padding-left:1px;">dag.</td>
+                                }
+                                <td style="display:none;"><button style="display:none;" value="@e.Id" type="submit" name="inschrijven" id="@e.Id ins"></button></td>
+                            </tr>
+                        }
+
                     }
-
                 }
-            }
-        </table>
+            </table>
+        </form>
     </div>
     <script>
         function select(id) {
-            //alert(id);
             var rij = document.getElementById(id);
-            
 
             for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
                 document.getElementById('tbl').rows[i].className = "row";
             }
             
             rij.className += " selected";
-            var value = rij.firstElementChild.id.toString();
             
             var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
-            document.getElementById(id + " ins").value = id.toString() + ";" + opm;
-            alert(document.getElementById(id + " ins").value.toString());
-            //document.getElementById('ins ' + id).click();
+            if (opm != null) {
+                document.getElementById(id + " ins").value = id.toString() + ";" + opm;
+                document.getElementById(id + " ins").click();
+            }
+            //document.getElementById(id + " ins").value = id.toString() + ";" + opm;
+            //document.getElementById(id + " ins").click();
         }
     </script>
 
