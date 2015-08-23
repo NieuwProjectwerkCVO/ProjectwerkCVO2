@@ -313,6 +313,7 @@ namespace CVOApp
                         com.Parameters.Add(new SqlParameter("@Opmerking", System.Data.SqlDbType.NVarChar)).Value = Opm;
                         SqlParameter id = new SqlParameter("@Id", System.Data.SqlDbType.Int);
                         id.Direction = System.Data.ParameterDirection.Output;
+                        com.Parameters.Add(id);
                         con.Open();
                         com.ExecuteNonQuery();
                         con.Close();
