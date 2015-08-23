@@ -79,15 +79,7 @@
 
     </style>
 
-    <script type="text/javascript">
-        function select(id) {
-            var rij = document.getElementById(id);
-            rij.addClass('selected');
-            var value = rij.find('td:first').html();
-            alert(id);
-        }
-            
-    </script>
+
 </head>
 <body>
     <div id="Menu" style="width: 100%;">
@@ -117,7 +109,7 @@
                     {
 
                         {
-                            <tr id="@m.Id" onclick="select($(this).id)" class="row">
+                            <tr id="@m.Id" onclick="select(this.id)" class="row">
                                 <td class="left">@m.CursusNummer</td>
                                 <td class="middle">@m.Naam</td>
                                <td class="right">@m.BeschikbarePlaatsen/@m.AantalPlaatsen</td>                                
@@ -132,5 +124,16 @@
         </form>
 
      </div>
+    <script>
+        function select(id) {
+            alert(id);
+            //var rij = document.getElementById(id);
+            //rij.addClass('selected');
+            //var value = rij.find('td:first').html();
+            //alert(value);
+        }
+
+    </script>
+
 </body>
 </html>
