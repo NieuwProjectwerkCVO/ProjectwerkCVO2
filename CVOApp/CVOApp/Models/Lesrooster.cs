@@ -70,11 +70,16 @@ namespace CVOApp.Models
 
         }
 
-        public Lesrooster(string moduleNaam, string cursusNummer, DateTime lesDatum)
+        public Lesrooster(string moduleNaam, string cursusNummer, DateTime lesDatum, DateTime startTijd, DateTime eindTijd, string docent, string campus, string lokaal)
         {
             ModuleNaam = moduleNaam;
             CursusNummer = cursusNummer;
             LesDatum = lesDatum;
+            Docent = docent;
+            StartTijd = startTijd;
+            EindTijd = eindTijd;
+            Campus = campus;
+            Lokaal = lokaal;
         }
     }
 }

@@ -197,7 +197,7 @@ namespace CVOApp
         }
 
 
-        public static List<Lesrooster> SelectLessenByCursist()
+        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
         {
             List<Lesrooster> lijst = new List<Lesrooster>();
 
@@ -234,23 +234,6 @@ namespace CVOApp
                }
           return lijst;
         }
-
-
-        
-        
-
-
-        public static List<Lesrooster> SelectLessenByCursist(int cursistId)
-        {
-
-            List<Lesrooster> lijst = new List<Lesrooster>();
-            return lijst;
-        }
-        //public static List<Lesmoment> SelectLessen()
-        //{
-
-        //    List<Lesmoment> lijst = new List<Lesmoment>();
-        //}
 
 
         public static List<Evenement> SelectEvents()
