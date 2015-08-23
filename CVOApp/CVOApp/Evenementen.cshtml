@@ -73,33 +73,6 @@
         }
         
     </style>
-
-    @*<script>
-        $(document).ready(function () {
-            
-        
-            //function Inschrijven(id, naam) {
-            //    if(confirm("Bent u zeker dat u wilt inschrijven voor het evenement \n " + naam))
-            //    {
-            //        var opm = window.prompt("heeft u nog opmerkingen bij uw inschrijving?", "bv: broodje kaas");
-
-            //    }
-            //}
-        
-            function bla(id) {
-                //var rij = document.getElementById(id);
-                //rij.addClass('selected');
-                    //.siblings().removeClass('selected');
-                //var value = rij.find('td:first').html();
-                alert(id);
-            
-            }
-
-            //$('.ok').on('click', function (e) {
-            //    alert($("#table tr.selected td:first").html());
-            //});
-        });
-    </script>*@
 </head>
 <body>
     <div id="Menu" style="width: 100%;">
@@ -116,7 +89,7 @@
     </div>
     <br /><br />
     <div class="back">
-        <table class="tabel">
+        <table id="tbl" class="tabel">
             <tr>
                 <th width="30%">Naam</th>
                 <th width="30%">Locatie</th>
@@ -155,13 +128,18 @@
         function select(id) {
             //alert(id);
             var rij = document.getElementById(id);
+            
+            for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
+                document.getElementById('tbl').rows[i].className = "row";
+            }
+            
             rij.className += " selected";
             //rij.addClass('selected');
             //.siblings().removeClass('selected');
             var value = rij.firstElementChild.id.toString();
             
             //var value = rij.find('td:first').html();
-            prompt("heeft u nog opmerkingen bij uw inschrijving?", value)
+            //prompt("heeft u nog opmerkingen bij uw inschrijving?", value)
 
         }
 

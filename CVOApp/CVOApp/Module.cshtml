@@ -98,7 +98,7 @@
     <div class="back">
         <form action="/" method="post">
 
-            <table class="tabel">
+            <table id="tbl" class="tabel">
                 <tr>
                     <th width="20%">Cursusnummer</th>
                     <th width="70%">Modulenaam</th>
@@ -128,6 +128,11 @@
         function select(id) {
             //alert(id);
             var rij = document.getElementById(id);
+
+            for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
+                document.getElementById('tbl').rows[i].className = "row";
+            }
+
             rij.className += " selected";
             var value = rij.firstElementChild.id.toString();
             alert(value);
