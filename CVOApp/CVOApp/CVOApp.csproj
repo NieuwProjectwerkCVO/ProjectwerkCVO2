@@ -113,6 +113,7 @@
     <Content Include="uitloggen.cshtml" />
     <Content Include="OpleidingSelect.cshtml" />
     <Content Include="Registreren.cshtml" />
+    <Content Include="LessenRooster.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

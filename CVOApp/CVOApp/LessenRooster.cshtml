@@ -1,0 +1,85 @@
+﻿@using System.Web.Razor
+@{
+    int cursistId = CVOApp.Models.LoginClass.LoginSession;
+    if (cursistId == 0)
+    {
+        Response.Redirect("index.cshtml");
+    }
+    List<CVOApp.Models.Lesrooster> lijst = CVOApp.Services.SelectLessenByCursist(cursistId);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div id="Menu" style="width: 100%;">
+        <a href="home.cshtml"><img src="img/logocvoantwerpenLink.png" style="float:left; width: 20.5%;" /></a>
+        <img src="img/logocvoantwerpen.png" style="float: left; width: 59%;" />
+        <label class="lbl" for="toggle"><img src="img/MenuIcon.png" style="width: 20.5%;" /></label>
+        <input name="" class="toggle" value="" id="toggle" type="checkbox" />
+        <ul class="test">
+            <li class="menu"><a href="home.cshtml">Home</a></li>
+            <li class="menu"><a href="resultaten.cshtml">Resultaten</a></li>
+            <li class="menu"><a href="OpleidingSelect.cshtml">Modules</a></li>
+            <li class="menu"><a class="current" href="~/LessenRooster.cshtml" >Lessen Rooster</a></li>
+            <li class="menuEnd"><a href="Evenementen.cshtml">Evenementen</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="tabel">
+        <tr>
+            <th width="15%">Datum</th>
+            <th width="15%">Docent</th>
+            <th width="15%">Campus</th>
+            <th width="5%">Lokaal</th>
+            <th width="5%">Start</th>
+            <th width="5%">Eind</th>
+            <th width="10%">Cursus</th>
+            <th width="30%">Modulenaam</th>
+        </tr>
+        @{
+            foreach (var m in lijst)
+            {
+
+                {
+                    <tr class="row">
+                        <td class="left">
+                            @m.LesDatum
+                        </td>
+                        <td class="middle">
+                            @m.Docent
+                        </td>
+                        <td class="middle">
+                            @m.Campus
+                        </td>
+                        <td class="middle">
+                            @m.Lokaal
+                        </td>
+                        <td class="middle">
+                            @m.StartTijd
+                        </td>
+                        <td class="middle">
+                            @m.EindTijd
+                        </td>
+                        <td class="middle">
+                            @m.CursusNummer
+                        </td>
+                        <td class="right">
+                            @m.ModuleNaam
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        }
+
+        </table>
+    </div>
+</body>
+</html>
