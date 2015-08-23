@@ -112,7 +112,6 @@
     <Content Include="Evenementen.cshtml" />
     <Content Include="uitloggen.cshtml" />
     <Content Include="OpleidingSelect.cshtml" />
-    <Content Include="Registreren.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
