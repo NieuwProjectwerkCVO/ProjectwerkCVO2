@@ -6,31 +6,20 @@
     {
         Response.Redirect("index.cshtml");
     }
-    if (IsPost)
-    {
-        //string cursusId = Request["registreer"];
-        CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);        
-        Response.Redirect("Module.cshtml");
-    }
+
     int opleidingId = CVOApp.Models.Opleiding.OpleidingSession;
     List<CVOApp.Models.Modules> lijst = CVOApp.Services.SelectCursussenPerOpleiding(opleidingId);
 
-    string message = "";
-    /*if (IsPost)
+    if (IsPost)
     {
 
-        CVOApp.Services.ModulePerOpleidingSelect("@m.Id");
-        if (CVOApp.Models.Opleiding.OpleidingSession != 0)
-        {
-            Response.Redirect("Module.cshtml");
-        }
-        else
-        {
-            message = "Kies een opleiding";
-        }
+        CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["registreren"]), DateTime.Now);
+        Response.Redirect("Module.cshtml");
+    }
 
 
-    }*/
+
+
 
 }
 <!DOCTYPE html>

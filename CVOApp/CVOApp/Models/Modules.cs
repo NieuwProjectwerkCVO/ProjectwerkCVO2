@@ -12,7 +12,7 @@ namespace CVOApp.Models
         private string _naam;
         private int _aantalPlaatsen;
         private int _beschikbarePlaatsen;
-        private DateTime _date;
+        
 
         public int Id
         {
@@ -44,16 +44,7 @@ namespace CVOApp.Models
             set { _beschikbarePlaatsen = value; }
         }
 
-        public int CursistId { get; set; }
-        public int CursusId { get; set; }
-        public DateTime Date
-        {
-            get { return _date; }
-            set
-            {
-                _date = DateTime.Now;
-            }
-        }
+
         public Modules()
         {
 
@@ -68,13 +59,7 @@ namespace CVOApp.Models
             Id = id;
         }
 
-        public Modules(int cursistId, int cursusId, DateTime date)
-        {
-            CursistId = cursistId;
-            CursusId = cursistId;
-            Date = date;
-        }
-
+       
         
     }
 }
