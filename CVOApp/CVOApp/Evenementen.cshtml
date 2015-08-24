@@ -95,6 +95,7 @@
             var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
             if (opm != null) {
                 //als er op ok wordt geklikt dan de opmerkingen en het id submitten.
+                //dit wordt in 1 variabele opgeslagen omdat dit simpeler door te sturen is
                 document.getElementById(id + " ins").value = id.toString() + ";" + opm;
                 document.getElementById(id + " ins").click();
             }

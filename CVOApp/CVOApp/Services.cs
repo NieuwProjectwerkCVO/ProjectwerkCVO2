@@ -265,6 +265,7 @@ namespace CVOApp
 
         public static void EvenementInschrijving(int CursistId, DateTime date, string EvidOpm)
         {
+            //de string EvidOpm moet opgesplits worden zodat deze de juiste info doorgeeft.
             string[] splits = EvidOpm.Split(';');
             string EvId = splits[0];
             string Opm = splits[1];
