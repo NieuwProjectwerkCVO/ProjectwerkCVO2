@@ -1,17 +1,18 @@
 ﻿@using System.Web.Razor
 @{
+    //Als de cursist niet is ingelogd dan wordt hij teruggestuurd naar de login pagina
     int cursistId = CVOApp.Models.LoginClass.LoginSession;
     if (cursistId == 0)
     {
         Response.Redirect("index.cshtml");
     }
+    
+    //haal de evenementen op om de tabel te vullen
     List<CVOApp.Models.Evenement> lijst = CVOApp.Services.SelectEvents();
 
+    //bij postback de cursist inschrijven voor het evenement
     if (IsPost)
     {
-        
-        //string cursusId = Request["registreer"];
-        //CVOApp.Services.ReserveerPlaats(cursistId, Convert.ToInt32(Request["inschrijven"]), DateTime.Now);
         CVOApp.Services.EvenementInschrijving(cursistId, DateTime.Now, Request["inschrijven"]);
     }
 }
@@ -83,21 +84,20 @@
     </div>
     <script>
         function select(id) {
-            var rij = document.getElementById(id);
-
+            //de layout veranderen van het geselecteerde evenement
             for (var i = 0; i < document.getElementById('tbl').rows.length; i++) {
                 document.getElementById('tbl').rows[i].className = "row";
             }
-            
+            var rij = document.getElementById(id);
             rij.className += " selected";
             
+            //de cursist opmerkingen laten schrijven
             var opm = prompt("heeft u nog opmerkingen bij uw inschrijving?");
             if (opm != null) {
+                //als er op ok wordt geklikt dan de opmerkingen en het id submitten.
                 document.getElementById(id + " ins").value = id.toString() + ";" + opm;
                 document.getElementById(id + " ins").click();
             }
-            //document.getElementById(id + " ins").value = id.toString() + ";" + opm;
-            //document.getElementById(id + " ins").click();
         }
     </script>
 
